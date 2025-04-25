@@ -12,6 +12,8 @@
                 bordered
                 class="custom-drawer"
             >
+            
+            <!-- :mini="!drawer || miniState" -->
                 <!--  -->
                 <!-- @click.capture="drawerClick" -->
                 <div style="padding: 15px; display: flex; align-items: center">
@@ -147,9 +149,6 @@
                         padding: 15px 20px 15px 20px;
                         margin: 8px 15px 0 15px;
                         border-radius: 20px;
-                        position: sticky;
-                        top: 20px;
-                        z-index: 100;
                     "
                 >
                     <q-btn
@@ -325,7 +324,7 @@
 
     const $q = useQuasar();
     const drawer = ref(false);
-    const miniState = ref(false);
+    const miniState = ref(true);
     const darkMode = ref(localStorage.getItem("darkMode") === "true");
 
     const drawerClick = (e) => {
@@ -560,3 +559,5 @@
         background-color: #0a549a;
     }
 </style>
+
+
