@@ -147,6 +147,9 @@
                         padding: 15px 20px 15px 20px;
                         margin: 8px 15px 0 15px;
                         border-radius: 20px;
+                        position: sticky;
+                        top: 20px;
+                        z-index: 100;
                     "
                 >
                     <q-btn
