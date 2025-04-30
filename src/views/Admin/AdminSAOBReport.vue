@@ -176,14 +176,6 @@
                                                     <tr>
                                                         <td class="text-left"style="font-weight: bold;" colspan="6">PERSONNEL SERVICES</td>
                                                     </tr>
-                                                    <tr v-if="sal1a1_allotment">
-                                                        <td class="text-left" style="padding-left:3em;">Salaries and Wages</td>
-                                                        <td class="text-center">50101010-01</td>
-                                                        <td class="text-right">{{ formatNumber(sal1a1_allotment) }}</td>
-                                                        <td class="text-right">{{ formatNumber(sal1a1_month) }}</td>
-                                                        <td class="text-right">{{ formatNumber(sal1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(sal1a1_allotment - sal1a1_total) }}</td>
-                                                    </tr>
                                                     
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>Salaries and Wages</b></td>
@@ -192,6 +184,14 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="sal1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Salaries and Wages</td>
+                                                        <td class="text-center">50101010-01</td>
+                                                        <td class="text-right">{{ formatNumber(sal1a1_allotment) }}</td>
+                                                        <td class="text-right">{{ formatNumber(sal1a1_month) }}</td>
+                                                        <td class="text-right">{{ formatNumber(sal1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(sal1a1_allotment - sal1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>Other Compensations</b></td>
@@ -398,16 +398,16 @@
                                                         <td class="text-right">{{ formatNumber(hazard1a1_total) }}</td>
                                                         <td class="text-right">{{ formatNumber(hazard1a1_allotment - hazard1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="longetivity1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Longetivity Pay</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(longetivity1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(longetivity1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(longetivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(longetivity1a1_allotment - longetivity1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="font-weight: bold;" colspan="6">MAINTENANCE AND OTHER OPERATING EXPENSES</td>
@@ -521,27 +521,27 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="water1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Water Expenses</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(water1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(water1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(water1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(water1a1_allotment - water1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="electricity1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Electricity Expenses</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(electricity1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(electricity1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(electricity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(electricity1a1_allotment - electricity1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>Communication Expenses</b></td>
@@ -551,49 +551,49 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="postage1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Postage and Courier Expenses</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(postage1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(postage1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(postage1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(postage1a1_allotment - postage1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="mobile1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Telephone (Mobile)</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(mobile1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(mobile1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(mobile1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(mobile1a1_allotment - mobile1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="landline1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Telephone(Landline)</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(landline1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(landline1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(landline1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(landline1a1_allotment - landline1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="internet1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Internet Subscription Expenses</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(internet1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(internet1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(internet1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(internet1a1_allotment - internet1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>Repair and Maintenance</b></td>
@@ -603,49 +603,49 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
-                                                        <td class="text-left" style="padding-left:3em;">Builings and Other Structures</td>
+                                                    <tr v-if="building1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Buildings and Other Structures</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(building1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(building1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(building1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(building1a1_allotment - building1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="vehicle1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Motor Vehicles</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(vehicle1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(vehicle1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(vehicle1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(vehicle1a1_allotment - vehicle1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="officeequip1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Office Equipment, Furnitures and Fixtures</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(officeequip1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(officeequip1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(officeequip1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(officeequip1a1_allotment - officeequip1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="extraordinary1a1_allotment">
                                                         <td class="text-left" style="padding-left:2em;"><b>Extraordinary and Miscellaneous Expenses</b></td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(extraordinary1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(extraordinary1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(extraordinary1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(extraordinary1a1_allotment - extraordinary1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>Professional Services</b></td>
@@ -655,16 +655,16 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="professional1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Other Professional Services</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(professional1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(professional1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(professional1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(professional1a1_allotment - professional1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>General Services</b></td>
@@ -674,38 +674,38 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="janitorial1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Janitorial Services</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(janitorial1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(janitorial1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(janitorial1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(janitorial1a1_allotment - janitorial1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="security1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Security Services</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(security1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(security1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(security1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(security1a1_allotment - security1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="general1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Other General Services</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(general1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(general1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(general1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(general1a1_allotment - general1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>Taxes, Insurance Premium and Other Fees</b></td>
@@ -715,27 +715,27 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="fidelity1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Fidelity Bond</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(fidelity1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(fidelity1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(fidelity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(fidelity1a1_allotment - fidelity1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="insurance1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Insurance Expenses</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(insurance1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(insurance1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(insurance1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(insurance1a1_allotment - insurance1a1_total) }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="text-left" style="padding-left:2em;"><b>Other Maintenance and Operating Expenses</b></td>
@@ -745,27 +745,638 @@
                                                         <td class="text-right"></td>
                                                         <td class="text-right"></td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="ictsoftware1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">ICT Software Subscription</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(ictsoftware1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(ictsoftware1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(ictsoftware1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(ictsoftware1a1_allotment - ictsoftware1a1_total) }}</td>
                                                     </tr>
-                                                    <tr v-if="longitivity1a1_allotment">
+                                                    <tr v-if="othersub1a1_allotment">
                                                         <td class="text-left" style="padding-left:3em;">Other Subscription Expenses</td>
                                                         <td class="text-center">50102120-03</td>
                                                         <td class="text-right">
-                                                            {{ formatNumber(longitivity1a1_allotment) }}
+                                                            {{ formatNumber(othersub1a1_allotment) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_month) }}
+                                                        <td class="text-right">{{ formatNumber(othersub1a1_month) }}
                                                         </td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_total) }}</td>
-                                                        <td class="text-right">{{ formatNumber(longitivity1a1_allotment - longitivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(othersub1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(othersub1a1_allotment - othersub1a1_total) }}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="text-left" style="font-weight: bold;" colspan="6">CAPITAL OUTLAY</td>
+                                                    </tr>
+                                                </tbody>
+                                            </q-markup-table>
+                                        </div>
+                                    </q-tab-panel>
+                                    <q-tab-panel name="tab2" class="tabpanel">
+                                        <q-linear-progress
+                                            v-if="loading"
+                                            color="primary"
+                                            indeterminate
+                                            class="q-mt-md"
+                                        />
+                                        <div v-else>
+                                            <q-markup-table flat bordered>         
+                                                <!-- prettier-ignore -->
+                                                <thead>
+                                                    <tr separator="cell">
+                                                        <th class="text-center" rowspan="2">Object of Expenditure</th>
+                                                        <th class="text-center" rowspan="2">UACS Code</th>
+                                                        <th class="text-center" rowspan="2">Allotment Received</th>
+                                                        <th class="text-center" colspan="2">Obligation</th>
+                                                        <th class="text-center" rowspan="2">Unobligated</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="text-center">This Month</th>
+                                                        <th class="text-center">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- prettier-ignore -->
+                                                    <tr>
+                                                        <td class="text-left"style="font-weight: bold;" colspan="6">PERSONNEL SERVICES</td>
+                                                    </tr>
+                                                    
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Salaries and Wages</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="sal2a11_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Salaries and Wages</td>
+                                                        <td class="text-center">50101010-01</td>
+                                                        <td class="text-right">{{ formatNumber(sal2a11_allotment) }}</td>
+                                                        <td class="text-right">{{ formatNumber(sal2a11_month) }}</td>
+                                                        <td class="text-right">{{ formatNumber(sal2a11_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(sal2a11_allotment - sal2a11_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Other Compensations</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="pera1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Personnel Econ. Relief Allowance (PERA)</td>
+                                                        <td class="text-center">50102010-01</td>
+                                                        <td class="text-right">{{ formatNumber(pera1a1_allotment) }}</td>
+                                                        <td class="text-right">{{ formatNumber(pera1a1_month) }}</td>
+                                                        <td class="text-right">{{ formatNumber(pera1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(pera1a1_allotment - pera1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="cloth1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Clothing Allowance</td>
+                                                        <td class="text-center">50102040-01</td>
+                                                        <td class="text-right">{{ formatNumber(cloth1a1_allotment) }}</td>
+                                                        <td class="text-right">{{ formatNumber(cloth1a1_month) }}</td>
+                                                        <td class="text-right">{{ formatNumber(cloth1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(cloth1a1_allotment - cloth1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="prod1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Productivity Enhancement Incentives</td>
+                                                        <td class="text-center">50102990-12</td>
+                                                        <td class="text-right">{{ formatNumber(prod1a1_allotment) }}</td>
+                                                        <td class="text-right">{{ formatNumber(prod1a1_month) }}</td>
+                                                        <td class="text-right">{{ formatNumber(prod1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(prod1a1_allotment - prod1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="yearend1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Year-End Bonus</td>
+                                                        <td class="text-center">50102140-01</td>
+                                                        <td class="text-right">{{ formatNumber(yearend1a1_allotment) }}</td>
+                                                        <td class="text-right">{{ formatNumber(yearend1a1_month) }}</td>
+                                                        <td class="text-right">{{ formatNumber(yearend1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(yearend1a1_allotment - yearend1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="cashgift1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Cash Gift</td>
+                                                        <td class="text-center">50102150-01</td>
+                                                        <td class="text-right">{{ formatNumber(cashgift1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(cashgift1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(cashgift1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(cashgift1a1_allotment - cashgift1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="midyear1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Mid-Year Bonus</td>
+                                                        <td class="text-center">50102160-01</td>
+                                                        <td class="text-right">{{ formatNumber(midyear1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(midyear1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(midyear1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(midyear1a1_allotment - midyear1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="pagibig1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Pag-IBIG Contributions</td>
+                                                        <td class="text-center">50103020-01</td>
+                                                        <td class="text-right">{{ formatNumber(pagibig1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(pagibig1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(pagibig1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(pagibig1a1_allotment - pagibig1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="philhealth1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">PhilHealth Contributions</td>
+                                                        <td class="text-center">50103030-01</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(philhealth1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(philhealth1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(philhealth1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(philhealth1a1_allotment - philhealth1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Emp. Comp. Insurance Prem.</td>
+                                                        <td class="text-center">50103040-01</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(ecip1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(ecip1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(ecip1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(ecip1a1_allotment - ecip1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Step Increment</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Personnel Services (Unprogrammed Appro)</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Other Personnel Benefits - Anniversary Bonus</td>
+                                                        <td class="text-center">50102990-38</td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Other Personnel Benefits - SRI</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Collective Negotiation Agreement (C.N.A.)</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Loyalty</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="ecip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Terminal Leave Benefits</td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Magna Carta Benefits</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="subsis1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Subsistence Allowance</td>
+                                                        <td class="text-center">50102050-02</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(subsis1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(subsis1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(subsis1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(subsis1a1_allotment - subsis1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="laundry1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Laundry Allowance</td>
+                                                        <td class="text-center">50102060-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(laundry1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(laundry1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(laundry1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(laundry1a1_allotment - laundry1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="hazard1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Hazard Pay</td>
+                                                        <td class="text-center">50102110-04</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(hazard1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(hazard1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(hazard1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(hazard1a1_allotment - hazard1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="longetivity1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Longetivity Pay</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(longetivity1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(longetivity1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(longetivity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(longetivity1a1_allotment - longetivity1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="font-weight: bold;" colspan="6">MAINTENANCE AND OTHER OPERATING EXPENSES</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Travelling Expenses</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="localtravel1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Local Travel</td>
+                                                        <td class="text-center">50201010-00</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(localtravel1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(localtravel1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(localtravel1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(localtravel1a1_allotment - localtravel1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="foreigntravel1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Foreign Travel</td>
+                                                        <td class="text-center">50201020-00</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(foreigntravel1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(foreigntravel1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(foreigntravel1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(foreigntravel1a1_allotment - foreigntravel1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Training and Scholarship Expenses</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="icttraining1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">ICT Training Expenses</td>
+                                                        <td class="text-center">50202010-01</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(icttraining1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(icttraining1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(icttraining1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(icttraining1a1_allotment - icttraining1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Supplies and Material Expenses</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="officesupplies1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Office Supplies Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(officesupplies1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(officesupplies1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(officesupplies1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(officesupplies1a1_allotment - officesupplies1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="officeict1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Office Supplies Expenses - ICT Supplies</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(officeict1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(officeict1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(officeict1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(officeict1a1_allotment - officeict1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="fuel1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Fuel, Oil and Lubricants Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(fuel1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(fuel1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(fuel1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(fuel1a1_allotment - fuel1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="othersupplies1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Other Supplies and Materials Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(othersupplies1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(othersupplies1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(othersupplies1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(othersupplies1a1_allotment - othersupplies1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Utility Expenses</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="water1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Water Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(water1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(water1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(water1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(water1a1_allotment - water1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="electricity1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Electricity Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(electricity1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(electricity1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(electricity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(electricity1a1_allotment - electricity1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Communication Expenses</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="postage1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Postage and Courier Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(postage1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(postage1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(postage1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(postage1a1_allotment - postage1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="mobile1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Telephone (Mobile)</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(mobile1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(mobile1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(mobile1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(mobile1a1_allotment - mobile1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="landline1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Telephone(Landline)</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(landline1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(landline1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(landline1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(landline1a1_allotment - landline1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="internet1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Internet Subscription Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(internet1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(internet1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(internet1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(internet1a1_allotment - internet1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Repair and Maintenance</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="building1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Buildings and Other Structures</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(building1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(building1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(building1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(building1a1_allotment - building1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="vehicle1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Motor Vehicles</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(vehicle1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(vehicle1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(vehicle1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(vehicle1a1_allotment - vehicle1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="officeequip1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Office Equipment, Furnitures and Fixtures</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(officeequip1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(officeequip1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(officeequip1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(officeequip1a1_allotment - officeequip1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="extraordinary1a1_allotment">
+                                                        <td class="text-left" style="padding-left:2em;"><b>Extraordinary and Miscellaneous Expenses</b></td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(extraordinary1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(extraordinary1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(extraordinary1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(extraordinary1a1_allotment - extraordinary1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Professional Services</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="professional1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Other Professional Services</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(professional1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(professional1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(professional1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(professional1a1_allotment - professional1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>General Services</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="janitorial1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Janitorial Services</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(janitorial1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(janitorial1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(janitorial1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(janitorial1a1_allotment - janitorial1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="security1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Security Services</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(security1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(security1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(security1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(security1a1_allotment - security1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="general1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Other General Services</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(general1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(general1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(general1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(general1a1_allotment - general1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Taxes, Insurance Premium and Other Fees</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="fidelity1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Fidelity Bond</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(fidelity1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(fidelity1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(fidelity1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(fidelity1a1_allotment - fidelity1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="insurance1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Insurance Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(insurance1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(insurance1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(insurance1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(insurance1a1_allotment - insurance1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-left" style="padding-left:2em;"><b>Other Maintenance and Operating Expenses</b></td>
+                                                        <td class="text-center"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                        <td class="text-right"></td>
+                                                    </tr>
+                                                    <tr v-if="ictsoftware1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">ICT Software Subscription</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(ictsoftware1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(ictsoftware1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(ictsoftware1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(ictsoftware1a1_allotment - ictsoftware1a1_total) }}</td>
+                                                    </tr>
+                                                    <tr v-if="othersub1a1_allotment">
+                                                        <td class="text-left" style="padding-left:3em;">Other Subscription Expenses</td>
+                                                        <td class="text-center">50102120-03</td>
+                                                        <td class="text-right">
+                                                            {{ formatNumber(othersub1a1_allotment) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(othersub1a1_month) }}
+                                                        </td>
+                                                        <td class="text-right">{{ formatNumber(othersub1a1_total) }}</td>
+                                                        <td class="text-right">{{ formatNumber(othersub1a1_allotment - othersub1a1_total) }}</td>
                                                     </tr>
 
                                                     <tr>
@@ -784,7 +1395,7 @@
         </q-card>
     </div>
 </template>
-
+<!--  -->
 <script setup>
     import { useQuasar, Notify } from "quasar";
     import { ref, onMounted, onUnmounted } from "vue";
@@ -874,7 +1485,7 @@
     const subsis1a1_allotment = ref("");
     const laundry1a1_allotment = ref("");
     const hazard1a1_allotment = ref("");
-    const longitivity1a1_allotment = ref("");
+    const longetivity1a1_allotment = ref("");
     const localtravel1a1_allotment = ref("");
     const foreigntravel1a1_allotment = ref("");
     const icttraining1a1_allotment = ref("");
@@ -900,6 +1511,30 @@
     const insurance1a1_allotment = ref("");
     const ictsoftware1a1_allotment = ref("");
     const othersub1a1_allotment = ref("");
+    const sal2a11_allotment = ref("");
+    const pera2a11_allotment = ref("");
+    const cloth2a11_allotment = ref("");
+    const prod2a11_allotment = ref("");
+    const yearend2a11_allotment = ref("");
+    const cashgift2a11_allotment = ref("");
+    const midyear2a11_allotment = ref("");
+    const pagibig2a11_allotment = ref("");
+    const philhealth2a11_allotment = ref("");
+    const ecip2a11_allotment = ref("");
+    const loyalty2a11_allotment = ref("");
+    const subsis2a11_allotment = ref("");
+    const laundry2a11_allotment = ref("");
+    const hazard2a11_allotment = ref("");
+    const longetivity2a11_allotment = ref("");
+    const localtravel2a11_allotment = ref("");
+    const foreigntravel2a11_allotment = ref("");
+    const officesupplies2a11_allotment = ref("");
+    const fuel2a11_allotment = ref("");
+    const othersupplies2a11_allotment = ref("");
+    const electricity2a11_allotment = ref("");
+    const postage2a11_allotment = ref("");
+    const mobile2a11_allotment = ref("");
+    const landline2a11_allotment = ref("");
 
     const sal1a1_month = ref("");
     const pera1a1_month = ref("");
@@ -923,7 +1558,7 @@
     const subsis1a1_month = ref("");
     const laundry1a1_month = ref("");
     const hazard1a1_month = ref("");
-    const longitivity1a1_month = ref("");
+    const longetivity1a1_month = ref("");
     const localtravel1a1_month = ref("");
     const foreigntravel1a1_month = ref("");
     const icttraining1a1_month = ref("");
@@ -949,6 +1584,30 @@
     const insurance1a1_month = ref("");
     const ictsoftware1a1_month = ref("");
     const othersub1a1_month = ref("");
+    const sal2a11_month = ref("");
+    const pera2a11_month = ref("");
+    const cloth2a11_month = ref("");
+    const prod2a11_month = ref("");
+    const yearend2a11_month = ref("");
+    const cashgift2a11_month = ref("");
+    const midyear2a11_month = ref("");
+    const pagibig2a11_month = ref("");
+    const philhealth2a11_month = ref("");
+    const ecip2a11_month = ref("");
+    const loyalty2a11_month = ref("");
+    const subsis2a11_month = ref("");
+    const laundry2a11_month = ref("");
+    const hazard2a11_month = ref("");
+    const longetivity2a11_month = ref("");
+    const localtravel2a11_month = ref("");
+    const foreigntravel2a11_month = ref("");
+    const officesupplies2a11_month = ref("");
+    const fuel2a11_month = ref("");
+    const othersupplies2a11_month = ref("");
+    const electricity2a11_month = ref("");
+    const postage2a11_month = ref("");
+    const mobile2a11_month = ref("");
+    const landline2a11_month = ref("");
 
     const sal1a1_total = ref("");
     const pera1a1_total = ref("");
@@ -972,7 +1631,7 @@
     const subsis1a1_total = ref("");
     const laundry1a1_total = ref("");
     const hazard1a1_total = ref("");
-    const longitivity1a1_total = ref("");
+    const longetivity1a1_total = ref("");
     const localtravel1a1_total = ref("");
     const foreigntravel1a1_total = ref("");
     const icttraining1a1_total = ref("");
@@ -998,6 +1657,30 @@
     const insurance1a1_total = ref("");
     const ictsoftware1a1_total = ref("");
     const othersub1a1_total = ref("");
+    const sal2a11_total = ref("");
+    const pera2a11_total = ref("");
+    const cloth2a11_total = ref("");
+    const prod2a11_total = ref("");
+    const yearend2a11_total = ref("");
+    const cashgift2a11_total = ref("");
+    const midyear2a11_total = ref("");
+    const pagibig2a11_total = ref("");
+    const philhealth2a11_total = ref("");
+    const ecip2a11_total = ref("");
+    const loyalty2a11_total = ref("");
+    const subsis2a11_total = ref("");
+    const laundry2a11_total = ref("");
+    const hazard2a11_total = ref("");
+    const longetivity2a11_total = ref("");
+    const localtravel2a11_total = ref("");
+    const foreigntravel2a11_total = ref("");
+    const officesupplies2a11_total = ref("");
+    const fuel2a11_total = ref("");
+    const othersupplies2a11_total = ref("");
+    const electricity2a11_total = ref("");
+    const postage2a11_total = ref("");
+    const mobile2a11_total = ref("");
+    const landline2a11_total = ref("");
 
     function showNotif() {
         Notify.create({
@@ -1041,7 +1724,7 @@
                 subsis1a1_allotment.value = response.data.subsis1a1_allot;
                 laundry1a1_allotment.value = response.data.laundry1a1_allot;
                 hazard1a1_allotment.value = response.data.hazard1a1_allot;
-                longitivity1a1_allotment.value = response.data.longitivity1a1_allot;
+                longetivity1a1_allotment.value = response.data.longetivity1a1_allot;
                 localtravel1a1_allotment.value = response.data.localtravel1a1_allot;
                 foreigntravel1a1_allotment.value = response.data.foreigntravel1a1_allot;
                 icttraining1a1_allotment.value = response.data.icttraining1a1_allot;
@@ -1067,6 +1750,8 @@
                 insurance1a1_allotment.value = response.data.insurance1a1_allot;
                 ictsoftware1a1_allotment.value = response.data.ictsoftware1a1_allot;
                 othersub1a1_allotment.value = response.data.othersub1a1_allot;
+                
+                sal2a11_allotment.value = response.data.sal2a11_allot;
 
 
                 sal1a1_month.value = response.data.sal1a1;
@@ -1084,7 +1769,7 @@
                 subsis1a1_month.value = response.data.subsis1a1;
                 laundry1a1_month.value = response.data.laundry1a1;
                 hazard1a1_month.value = response.data.hazard1a1;
-                longitivity1a1_month.value = response.data.longitivity1a1;
+                longetivity1a1_month.value = response.data.longetivity1a1;
                 localtravel1a1_month.value = response.data.localtravel1a1;
                 foreigntravel1a1_month.value = response.data.foreigntravel1a1;
                 icttraining1a1_month.value = response.data.icttraining1a1;
@@ -1111,6 +1796,7 @@
                 ictsoftware1a1_month.value = response.data.ictsoftware1a1;
                 othersub1a1_month.value = response.data.othersub1a1;
 
+                sal2a11_month.value = response.data.sal2a11;
 
                 sal1a1_total.value = response.data.sal1a1_total;
                 pera1a1_total.value = response.data.pera1a1_total;
@@ -1127,7 +1813,7 @@
                 subsis1a1_total.value = response.data.subsis1a1_total;
                 laundry1a1_total.value = response.data.laundry1a1_total;
                 hazard1a1_total.value = response.data.hazard1a1_total;
-                longitivity1a1_total.value = response.data.longitivity1a1_total;
+                longetivity1a1_total.value = response.data.longetivity1a1_total;
                 localtravel1a1_total.value = response.data.localtravel1a1_total;
                 foreigntravel1a1_total.value = response.data.foreigntravel1a1_total;
                 icttraining1a1_total.value = response.data.icttraining1a1_total;
@@ -1154,6 +1840,12 @@
                 ictsoftware1a1_total.value = response.data.ictsoftware1a1_total;
                 othersub1a1_total.value = response.data.othersub1a1_total;
 
+                sal2a11_total.value = response.data.sal2a11_total;
+
+
+
+
+// 
 
                 // loading screen
                 loading.value = false;
