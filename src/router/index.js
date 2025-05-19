@@ -9,6 +9,7 @@ import AdminSAOB from "../views/Admin/AdminSAOBReport.vue";
 import UserLayout from "../layouts/UserLayout.vue";
 import UserDashboard from "../views/User/UserDashboard.vue";
 import UserORSDetails from "../views/User/UserORSDetails.vue";
+import LIBMaker from "../views/User/LIBMaker.vue";
 
 import testselect from "../views/User/testselect.vue";
 
@@ -40,6 +41,11 @@ const routes = [
                 path: "/user/orsdetails/:ors_random",
                 name: "UserOrsDetails",
                 component: UserORSDetails,
+            },
+            {
+                path: "/user/libmaker",
+                name: "LIBMaker",
+                component: LIBMaker,
             },
         ],
     },

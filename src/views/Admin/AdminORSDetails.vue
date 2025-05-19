@@ -183,6 +183,9 @@
                                                 <td class="table-header-text">
                                                     Amount
                                                 </td>
+                                                <td class="table-header-text">
+                                                    Action
+                                                </td>
                                                 <td class="table-empty"></td>
                                             </tr>
                                             <tr
@@ -207,6 +210,9 @@
                                                             }
                                                         )
                                                     }}
+                                                </td>
+                                                <td class="table-cell">
+                                                    <q-icon name="edit" />
                                                 </td>
                                                 <td class="table-empty"></td>
                                             </tr>

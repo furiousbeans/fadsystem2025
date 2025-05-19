@@ -82,7 +82,8 @@
                     <q-item
                         clickable
                         :to="{ path: '/user' }"
-                        active-class="listActive"
+                        exact
+                        exact-active-class="listActive"
                         class="listItem"
                     >
                         <q-item-section avatar>
@@ -95,8 +96,24 @@
                     </q-item>
                     <q-item
                         clickable
+                        :to="{ path: '/user/libmaker' }"
+                        exact-active-class="listActive"
+                        class="listItem"
+                    >
+                        <!-- @click="addPayee()" -->
+
+                        <q-item-section avatar>
+                            <q-icon name="list_alt" />
+                        </q-item-section>
+
+                        <q-item-section class="nav-list-item">
+                            LIB Database
+                        </q-item-section>
+                    </q-item>
+                    <q-item
+                        clickable
                         @click="addPayee()"
-                        active-class="listActive"
+                        exact-active-class="listActive"
                         class="listItem"
                     >
                         <!--  -->
