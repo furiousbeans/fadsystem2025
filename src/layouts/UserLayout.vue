@@ -228,7 +228,7 @@
                                 </div>
                             </div>
                         </q-card-section>
-
+<!--  -->
                         <q-card-actions align="right">
                             <div
                                 style="margin-right: 15px; margin-bottom: 10px"
@@ -354,7 +354,7 @@
         try {
             var formData = new FormData();
             formData.append("payeename", state.inputPayeeName);
-            formData.append("payeeacct", state.inputPayeeAcct);
+            formData.append("payeeacct", state.inputPayeeAcct);      
             formData.append("payeebank", state.inputPayeeBank);
             formData.append("payeetin", state.inputPayeeTIN);
 
@@ -378,6 +378,9 @@
             // console.log(state.inputPayeeAcct);
             // console.log(state.inputPayeeBank);
             // console.log(state.inputPayeeTIN);
+
+            // 
+            
         } catch (error) {
             console.error("Unexpected Error:", error);
         }
@@ -386,7 +389,7 @@
     const closePayee = async () => {
         clearText();
     };
-    //
+    // alittlelongera
     const clearText = () => {
         state.inputPayeeName = "";
         state.inputPayeeAcct = "";
@@ -394,7 +397,7 @@
         state.inputPayeeTIN = "";
         state.inputPayeeAddr = "";
     };
-
+// 
     const logoutConfirm = () => {
         swalLogout();
     };
@@ -426,7 +429,8 @@
         });
     };
 
-    //
+    // 
+
     const swalLogout = () => {
         Swal.fire({
             text: "Exit program?",
@@ -446,6 +450,8 @@
         });
     };
 </script>
+
+<!--  -->
 
 <style scoped>
     ::v-deep(.q-drawer) {
@@ -476,6 +482,8 @@
     .body--dark .q-item {
         color: white !important;
     }
+
+    /* they should announce who the mvp is before okc gets */
 
     .body--dark .q-item__label {
         color: white !important;

@@ -1455,6 +1455,9 @@
     //     });
     // };
 
+
+    // 
+
     const formatNumber = (num) => {
         const number = Number(num);
         if (isNaN(number) || number === 0) return '-';
@@ -1462,6 +1465,8 @@
             minimumFractionDigits: 2,
         });
     };
+
+    // 
 
     const sal1a1_allotment = ref("");
     const pera1a1_allotment = ref("");
@@ -1476,7 +1481,7 @@
     const philhealth1a1_allotment = ref("");
     const ecip1a1_allotment = ref("");
     const step1a1_allotment = ref("");
-    const unprog1a1_allotment = ref("");
+    const unprog1a1_allotment = ref(""); 
     const anniv1a1_allotment = ref("");
     const sri1a1_allotment = ref("");
     const cna1a1_allotment = ref("");
@@ -1608,6 +1613,8 @@
     const postage2a11_month = ref("");
     const mobile2a11_month = ref("");
     const landline2a11_month = ref("");
+
+// 
 
     const sal1a1_total = ref("");
     const pera1a1_total = ref("");
@@ -1844,8 +1851,6 @@
 
 
 
-
-// 
 
                 // loading screen
                 loading.value = false;
