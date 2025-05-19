@@ -500,8 +500,6 @@
         color: white !important;
     }
 
-    /* they should announce who the mvp is before okc gets */
-
     .body--dark .q-item__label {
         color: white !important;
     }

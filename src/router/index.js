@@ -5,6 +5,8 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import AdminDashboard from "../views/Admin/AdminDashboard.vue";
 import AdminORSDetails from "../views/Admin/AdminORSDetails.vue";
 import AdminSAOB from "../views/Admin/AdminSAOBReport.vue";
+import LIBDatabase from "../views/Admin/LIBDatabase.vue";
+
 
 import UserLayout from "../layouts/UserLayout.vue";
 import UserDashboard from "../views/User/UserDashboard.vue";
@@ -29,6 +31,11 @@ const routes = [
                 path: "/administrator/reports/saob",
                 name: "AdminSAOB",
                 component: AdminSAOB,
+            },
+            {
+                path: "/administrator/lib",
+                name: "LIBDatabase",
+                component: LIBDatabase,
             },
         ],
     },

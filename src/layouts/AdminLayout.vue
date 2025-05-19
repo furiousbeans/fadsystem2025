@@ -96,6 +96,21 @@
                             ORS Database
                         </q-item-section>
                     </q-item>
+                    <q-item
+                        clickable
+                        :to="{ path: '/administrator/lib' }"
+                        exact
+                        exact-active-class="listActive"
+                        class="listItem"
+                    >
+                        <q-item-section avatar>
+                            <q-icon name="list_alt" />
+                        </q-item-section>
+
+                        <q-item-section class="nav-list-item">
+                            LIB Database
+                        </q-item-section>
+                    </q-item>
                     <q-expansion-item icon="receipt_long" label="Reports">
                         <q-item
                             clickable

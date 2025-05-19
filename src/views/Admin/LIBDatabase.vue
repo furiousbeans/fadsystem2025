@@ -14,12 +14,20 @@
                             <q-markup-table flat bordered>
                                 <thead>
                                     <tr separator="cell">
-                                        <th class="text-center">Project Title</th>
-                                        <th class="text-center">Allotment</th>
-                                        <th class="text-center">Obligated</th>
-                                        <th class="text-center">Remaining Allotment</th>
+                                        <th class="text-center" style="width:55%">Project Title</th>
+                                        <th class="text-center" style="width:15%">Allotment</th>
+                                        <th class="text-center" style="width:15%">Obligated</th>
+                                        <th class="text-center" style="width:15%">Remaining Allotment</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Human Resource Development Program (HRDP)</td>
+                                        <td>Human Resource Development Program (HRDP)</td>
+                                        <td>Human Resource Development Program (HRDP)</td>
+                                        <td>Human Resource Development Program (HRDP)</td>
+                                    </tr>
+                                </tbody>
                             </q-markup-table>
                         </div>
                     </q-card>
