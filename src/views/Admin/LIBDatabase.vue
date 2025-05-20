@@ -29,10 +29,22 @@
             </q-card>
         </q-card>
         <q-dialog v-model="LIBDialog">
-            <q-card style="min-width: 1000px">
+            <q-card style="min-width: 1000px; min-height: 600px;">
                 <q-card-section>
-                    {{ selectedProject?.prj_title }}
-                    <!-- {{ selectedProject?.prj_id }} -->
+                    <div style="padding:15px">
+                        <h5>{{ selectedProject?.prj_title }}</h5>
+                        <q-card-section>
+                            <q-table
+                                ref="LIBtable"
+                                :rows="LIBrows"
+                                :columns="LIBcolumns"
+                                :pagination="{rowsPerPage: 0}"
+                                virtual-scroll
+                            >
+
+                            </q-table>
+                        </q-card-section>
+                    </div>
                 </q-card-section>
             </q-card>
         </q-dialog>
@@ -95,12 +107,45 @@
         },
     ];
 
+    const libID = ref();
+    const LIBtable = ref();
+    const LIBrows = ref([]);
+    const LIBcolumns = [
+        {
+            name: "lib_title",
+            label: "LIB Item",
+            field: "lib_title",
+            align: "left",
+        },
+        {   
+            field: "lib_allot",
+            label: "Total Allotment",
+            field: "lib_allot",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {   
+            field: "total_amount",
+            label: "Total Obligation",
+            field: "total_amount",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+    ];
+
+
 
     const viewProject = () => {
         axios
             .get("http://localhost/budsys2025_backend/select.php?readProject")
             .then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 rows.value = response.data;
             });
     };
@@ -111,6 +156,19 @@
     const openProjectModal = (row) => {
         selectedProject.value = row;
         LIBDialog.value = true;
+        libID.value = row.prj_id;
+        console.log(libID.value);
+        
+        var formData = new FormData();
+        formData.append("refnum", libID.value);
+        axios
+            .post("http://localhost/budsys2025_backend/select.php?getLibItems", formData)
+            .then((response) => {
+                LIBrows.value = response.data;
+            })
+            .catch((error) => {
+                console.error("Error fetching lib items:", error);
+            });
     };
 
 </script>
@@ -203,4 +261,44 @@
 </style>
 
 
+<!--
+const openProjectModal = (row) => {
+    selectedProject.value = row;
+    LIBDialog.value = true;
+    libID.value = row.prj_id;
+    console.log(libID.value);
 
+    var formData = new FormData();
+    formData.append("refnum", libID.value);
+    axios
+        .post("http://localhost/budsys2025_backend/select.php?getLibItems")
+        .then((response) => {
+            libItems.value = response.data;
+        })
+        .catch((error) => {
+            console.error("Error fetching lib items:", error);
+        });
+};
+
+const libID = ref();
+const LIBtable = ref();
+const LIBrows = ref([]);
+const LIBcolumns = [
+    {
+        name: "lib_title",
+        label: "LIB Item",
+        field: "lib_title",
+        align: "left",
+    },
+    {   
+        field: "lib_allot",
+        label: "Total Allotment",
+        field: "lib_allot",
+        align: "right",
+        format: Intl.NumberFormat("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        }).format,
+    },
+];
+ -->

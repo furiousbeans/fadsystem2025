@@ -201,6 +201,9 @@
                                                     Amount
                                                 </td>
                                                 <td class="table-header-text">
+                                                    LIB Item
+                                                </td>
+                                                <td class="table-header-text">
                                                     Action
                                                 </td>
                                                 <td class="table-empty"></td>
@@ -227,6 +230,9 @@
                                                             }
                                                         )
                                                     }}
+                                                </td>
+                                                <td class="table-cell">
+                                                    {{ item.lib_id }}
                                                 </td>
                                                 <td class="table-cell">
                                                     <q-btn flat
@@ -314,6 +320,7 @@
     const displaydetails = ref("");
     const displayparticulars = ref("");
     const displayorsparticulars = ref("");
+    const displaylibid = ref("");
 
     const viewORSdetails = () => {
         var formData = new FormData();
@@ -336,6 +343,7 @@
                     displayparticulars.value = item.particulars;
                     displaystatus.value = item.isapproved;
                     displayorsnum.value = item.ors_number;
+                    displaylibid.value = item.lib_id;
                 });
             });
     };
