@@ -1,39 +1,41 @@
 <template>
     <div class="q-pa-md">
         <q-card class="card-container" flat>
-            <q-card-section class="col orsdetails-card">
-                <q-card class="ors-card" flat bordered>
-                    <q-card flat>
-                        <div class="row items-center justify-between">
-                            <span class="card-text text-title"
-                                >LIB Database</span
+            <q-card class="my-card" flat style="border-radius: 20px">
+                <q-card-section horizontal>
+                    <q-card-section class="col" style="padding: 45px">
+                        <q-card flat bordered style="border-color: #e5e5e5">
+                            <q-table
+                                ref="tableRef"
+                                :rows="rows"
+                                :columns="columns"
+                                title="LIB Database"
                             >
-                        </div>
-                        <br>
-                        <div>
-                            <q-markup-table flat bordered>
-                                <thead>
-                                    <tr separator="cell">
-                                        <th class="text-center" style="width:55%">Project Title</th>
-                                        <th class="text-center" style="width:15%">Allotment</th>
-                                        <th class="text-center" style="width:15%">Obligated</th>
-                                        <th class="text-center" style="width:15%">Remaining Allotment</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Human Resource Development Program (HRDP)</td>
-                                        <td>Human Resource Development Program (HRDP)</td>
-                                        <td>Human Resource Development Program (HRDP)</td>
-                                        <td>Human Resource Development Program (HRDP)</td>
-                                    </tr>
-                                </tbody>
-                            </q-markup-table>
-                        </div>
-                    </q-card>
-                </q-card>
-            </q-card-section>
+                                <template v-slot:body-cell-prj_title="props">
+                                    <q-td :props="props">
+                                        <q-btn
+                                            flat
+                                            @click="openProjectModal(props.row)"
+                                        >
+                                            {{ props.row.prj_title }}
+                                            <q-tooltip> View Project </q-tooltip>
+                                        </q-btn>
+                                    </q-td>
+                                </template>
+                            </q-table>
+                        </q-card>
+                    </q-card-section>
+                </q-card-section>
+            </q-card>
         </q-card>
+        <q-dialog v-model="LIBDialog">
+            <q-card style="min-width: 1000px">
+                <q-card-section>
+                    {{ selectedProject?.prj_title }}
+                    <!-- {{ selectedProject?.prj_id }} -->
+                </q-card-section>
+            </q-card>
+        </q-dialog>
     </div>
 </template>
 
@@ -45,7 +47,73 @@
     import Swal from "sweetalert2";
     const $q = useQuasar();
 
-    const darkMode = inject("darkMode");</script>
+    const darkMode = inject("darkMode");
+
+    onMounted(() => {
+        document.title = "FAD System | LIB Database";
+        viewProject();
+    });
+
+    const tableRef = ref();
+    const rows = ref([]);
+    const columns = [
+        {
+            name: "prj_div",
+            label: "Division",
+            field: "prj_div",
+            align: "center",
+        },
+        {
+            name: "prj_title",
+            label: "Project Title",
+            field: "prj_title",
+            align: "left",
+        },
+        {
+            name: "prj_fund",
+            label: "Fund Source",
+            field: "prj_fund",
+            align: "center",
+        },
+        {   
+            field: "total_allotment",
+            label: "Total Allotment",
+            field: "total_allotment",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            label: "Accumulated Obligation",
+            align: "center",
+        },
+        {
+            label: "Unexpended Allotment",
+            align: "center",
+        },
+    ];
+
+
+    const viewProject = () => {
+        axios
+            .get("http://localhost/budsys2025_backend/select.php?readProject")
+            .then(function (response) {
+                console.log(response.data);
+                rows.value = response.data;
+            });
+    };
+
+    const LIBDialog = ref(false);
+    const selectedProject = ref(null);
+
+    const openProjectModal = (row) => {
+        selectedProject.value = row;
+        LIBDialog.value = true;
+    };
+
+</script>
 
 
 <style scoped>
@@ -133,3 +201,6 @@
         }
     }
 </style>
+
+
+

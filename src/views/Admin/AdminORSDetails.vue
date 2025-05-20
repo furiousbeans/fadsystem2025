@@ -118,6 +118,19 @@
                                                 <td class="table2-label-value">
                                                     {{ displayorsnum }}
                                                 </td>
+                                                <td>
+                                                    <q-btn
+                                                        dense
+                                                        flat
+                                                        icon="edit"
+                                                        color="green-8"
+                                                    >
+                                                        <!-- @click="ORSNumModal(props)" -->
+                                                        <q-tooltip>
+                                                            Edit
+                                                        </q-tooltip>
+                                                    </q-btn>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="table2-label">
@@ -126,6 +139,7 @@
                                                 <td
                                                     class="table2-label-value"
                                                 ></td>
+                                                <td></td>
                                             </tr>
 
                                             <tr>
@@ -135,6 +149,7 @@
                                                 <td class="table2-label-value">
                                                     {{}}
                                                 </td>
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td class="table2-label">
@@ -143,6 +158,7 @@
                                                 <td class="table2-label-value">
                                                     {{}}
                                                 </td>
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td class="table2-label">
@@ -151,6 +167,7 @@
                                                 <td class="table2-label-value">
                                                     {{}}
                                                 </td>
+                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </q-markup-table>
@@ -212,7 +229,10 @@
                                                     }}
                                                 </td>
                                                 <td class="table-cell">
-                                                    <q-icon name="edit" />
+                                                    <q-btn flat
+                                                    :color="$q.dark.isActive ? 'pink-4' : 'red'" >
+                                                        <q-icon name="edit" />
+                                                    </q-btn>
                                                 </td>
                                                 <td class="table-empty"></td>
                                             </tr>
