@@ -232,10 +232,14 @@
                                                     }}
                                                 </td>
                                                 <td class="table-cell">
-                                                    {{ item.lib_id }}
+                                                    <!-- {{ item.ors_id }} -->
+                                                   <span v-if="item.lib_title">
+                                                        {{ item.lib_title.length > 30 ? item.lib_title.substring(0, 30) + '…' : item.lib_title }}
+                                                    </span>
                                                 </td>
                                                 <td class="table-cell">
                                                     <q-btn flat
+                                                    @click="editRowModal(item)"
                                                     :color="$q.dark.isActive ? 'pink-4' : 'red'" >
                                                         <q-icon name="edit" />
                                                     </q-btn>
@@ -286,11 +290,94 @@
                 </q-card>
             </q-card-section>
         </q-card>
+
+        <q-dialog v-model="editORSDetailsModal">
+            <q-card style="min-width: 600px; min-height: 300px;">
+                <q-card-section>
+                    <div style="padding:15px">
+                        <div class="text-h6">Edit ORS Details</div>
+                        <span class="text-blue-8">{{ docID }}</span>
+                        <q-card-section>
+                            {{ selectedOrsId }}
+                                <input label="UACS init" required v-model="inituacstxt" hidden  />
+                                <input label="UACS changed" required v-model="uacscodetxt" hidden />
+
+                                <input label="MFO init" required v-model="initmfopaptxt" hidden  />
+                                <input label="MFO changed" required v-model="mfopaptxt" hidden />
+
+                                <!-- <input label="LIB id" required v-model="libtxt"  /> -->
+                                <div class="row">
+                                    <div class="col-4">  
+                                        <q-select
+                                            use-input
+                                            fill-input
+                                            hide-selected
+                                            @filter="filterFnUACS"
+                                            input-debounce="0"
+                                            v-model="uacsSelect"
+                                            :options="itemoptionsUACS"
+                                            label="UACS Code"
+                                            map-options
+                                            required
+                                            style="width: 98%;"
+                                        >
+                                        </q-select>
+                                    </div>
+                                    <div class="col-4">
+                                        <q-select
+                                            use-input
+                                            fill-input
+                                            hide-selected
+                                            input-debounce="0"
+                                            @filter="filterFnPrj"
+                                            v-model="mfopapSelect"
+                                            :options="itemoptionsPrj"
+                                            label="MFO/PAP"
+                                            map-options
+                                            required
+                                            @update:model-value="viewLIBItems"
+                                            style="width: 98%;"
+                                        >
+                                        </q-select>
+                                    </div>
+                                    <div class="col-4">
+                                        <q-input
+                                            v-model="amounttxtValue"
+                                            style="width: 98%;"></q-input>
+                                    </div>
+                                </div>
+                            <div>
+                                <q-select
+                                    use-input
+                                    fill-input
+                                    hide-selected
+                                    input-debounce="0"
+                                    @filter="filterFnLIB"
+                                    v-model="LIBItemsSelect"
+                                    :options="itemoptionsLIB"
+                                    label="LIB Item"
+                                    map-options
+                                    required
+                                >
+                                </q-select>
+                            </div>
+                        </q-card-section>
+                            <div class="row justify-center">
+                                <div class="col-4">
+                                    <q-btn type="submit" color="primary" name="addnewORS" style="width: 100%;" @click="saveORSrow()">
+                                    Save ORS
+                                    </q-btn>
+                                </div>
+                            </div>
+                    </div>
+                </q-card-section>
+            </q-card>
+        </q-dialog>
     </div>
 </template>
 <!--  -->
 <script setup>
-    import { ref, onMounted } from "vue";
+    import { ref, onMounted, watch } from "vue";
     import { useRoute } from "vue-router";
     const route = useRoute();
     import { useQuasar } from "quasar";
@@ -301,9 +388,13 @@
 
     const docID = ref();
     onMounted(() => {
+        document.title = "FAD System | ORS Details";
         docID.value = route.params.ors_random;
         viewORSdetails();
         viewORSdetails_particulars();
+        viewUACS();
+        viewProject();
+        // viewLIBItems();
     });
 
     // generate QR
@@ -321,6 +412,8 @@
     const displayparticulars = ref("");
     const displayorsparticulars = ref("");
     const displaylibid = ref("");
+    // const displaylibtitle = ref("");
+    const displayorsid = ref("");
 
     const viewORSdetails = () => {
         var formData = new FormData();
@@ -344,6 +437,8 @@
                     displaystatus.value = item.isapproved;
                     displayorsnum.value = item.ors_number;
                     displaylibid.value = item.lib_id;
+                    // displaylibtitle.value = item.lib_title;
+                    displayorsid.value = item.ors_id;
                 });
             });
     };
@@ -360,6 +455,173 @@
                 displayorsparticulars.value = response.data[0].particulars;
             });
     };
+
+
+
+    const editORSDetailsModal = ref(false);
+    const selectedOrsId = ref(null);
+
+    function editRowModal(item) {
+        selectedOrsId.value = item.ors_id;
+        editORSDetailsModal.value = true;
+
+        viewLIBItems();
+
+        inituacstxt.value = item.uacs;
+        initmfopaptxt.value = item.mfopap;
+        amounttxtValue.value = item.amount;
+
+        libtxt.value = LIBItemsSelect.value;
+
+        uacsSelect.value = item.uacs;
+        mfopapSelect.value = item.mfopap;
+        
+    }
+
+    const uacscodetxt = ref("");
+    const inituacstxt = ref("");
+    const mfopaptxt = ref("");
+    const initmfopaptxt = ref("");
+    const libtxt = ref("");
+
+    const amounttxtValue = ref("");
+
+    const uacsSelect = ref("");
+    const mfopapSelect = ref("");
+    const LIBItemsSelect = ref("");
+
+    var stringOptionsUACS = ref([]);
+    var stringOptionsPrj = ref([]);
+    var stringOptionsLIB = ref([]);
+
+    const itemoptionsUACS = ref([stringOptionsUACS]);
+    const itemoptionsPrj = ref([stringOptionsPrj]);
+    const itemoptionsLIB = ref([stringOptionsLIB]);
+
+    const filterFnUACS = (val, update) => {
+      if (val === "") {
+          update(() => {
+              itemoptionsUACS.value = stringOptionsUACS;
+          });
+          return;
+      }
+
+      update(() => {
+          const needle = val.toLowerCase();
+          itemoptionsUACS.value = stringOptionsUACS.filter(
+              (v) => v.label.toLowerCase().indexOf(needle) > -1
+          );
+      });
+  };
+
+  const filterFnPrj = (val, update) => {
+      if (val === "") {
+          update(() => {
+              itemoptionsPrj.value = stringOptionsPrj;
+          });
+          return;
+      }
+
+      update(() => {
+        const needle = val.toLowerCase();
+        itemoptionsPrj.value = stringOptionsPrj.filter(
+            (v) => v.label.toLowerCase().indexOf(needle) > -1
+        );
+      });
+  };
+
+  const filterFnLIB = (val, update) => {
+      if (val === "") {
+          update(() => {
+              itemoptionsLIB.value = stringOptionsLIB;
+          });
+          return;
+      }
+
+      update(() => {
+        const needle = val.toLowerCase();
+        itemoptionsLIB.value = stringOptionsLIB.filter(
+            (v) => v.label.toLowerCase().indexOf(needle) > -1
+        );
+      });
+  };
+
+  const viewUACS = () => {
+    axios
+      .get("http://localhost/budsys2025_backend/select.php?readUACS")
+      .then(function (response) {
+        stringOptionsUACS = response.data;
+    });
+  };
+  const viewProject = () => {
+  axios
+    .get("http://localhost/budsys2025_backend/select.php?readProjectFunding")
+    .then(function (response) {
+        stringOptionsPrj = response.data;
+  });
+};
+
+  const viewLIBItems = () => {
+  axios
+            .get("http://localhost/budsys2025_backend/select.php?readLIBItemList")
+    .then(function (response) {
+        stringOptionsLIB = response.data;
+  });
+};
+
+watch(uacsSelect, (newValue) => {
+  uacscodetxt.value = newValue.value;
+});
+
+watch(mfopapSelect, (newValue) => {
+  mfopaptxt.value = newValue.value;
+});
+
+
+// SAVE ORS ITEM DETAILS
+ const saveORSrow  = async () => {
+  try{
+    var formData = new FormData();
+    formData.append("orsRowID", selectedOrsId.value);
+    formData.append("init_uacs", inituacstxt.value);
+    formData.append("new_uacs", uacscodetxt.value);
+    formData.append("init_mfopap", initmfopaptxt.value);
+    formData.append("new_mfopap", mfopaptxt.value);
+    formData.append("amount", amounttxtValue.value);
+    formData.append("orsRandomID", docID.value);
+    formData.append("libitemID", LIBItemsSelect.value.value);
+
+    console.log(selectedOrsId.value);
+    console.log(docID.value);
+    console.log(inituacstxt.value);
+    console.log(uacscodetxt.value);
+    console.log(initmfopaptxt.value);
+    console.log(mfopaptxt.value);
+    console.log(amounttxtValue.value);
+    console.log(LIBItemsSelect.value.value);
+
+
+    axios
+    .post("http://localhost/budsys2025_backend/update.php?updateORSrow", formData)
+    .then(function (response) {
+        if((response.data == true)){
+        //   console.log(response.data);
+        editORSDetailsModal.value = false;
+        viewORSdetails();
+        viewORSdetails_particulars();
+        }
+        else{
+        //   console.log(response.data);
+        }
+    });
+
+  }
+  catch (error){
+    console.error("Error occurred:", error);
+  }
+};
+
+// SAVE ORS ITEM DETAILS
 </script>
 
 <style scoped>
@@ -447,3 +709,5 @@
         }
     }
 </style>
+
+
