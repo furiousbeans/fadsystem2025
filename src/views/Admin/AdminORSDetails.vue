@@ -569,13 +569,13 @@
   });
 };
 
-watch(uacsSelect, (newValue) => {
-  uacscodetxt.value = newValue.value;
-});
+// watch(uacsSelect, (newValue) => {
+//   uacscodetxt.value = newValue.value;
+// });
 
-watch(mfopapSelect, (newValue) => {
-  mfopaptxt.value = newValue.value;
-});
+// watch(mfopapSelect, (newValue) => {
+//   mfopaptxt.value = newValue.value;
+// });
 
 
 // SAVE ORS ITEM DETAILS
