@@ -578,7 +578,7 @@
         var formData = new FormData();
         axios
             .post(
-                "http://localhost/budsys2025_backend/select.php?readORSall",
+                "http://172.16.10.5/budsys2025_backend/select.php?readORSall",
                 formData,
                 {
                     headers: {
@@ -597,7 +597,7 @@
     // view payee list
     const viewPayee = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readPayee")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readPayee")
             .then(function (response) {
                 stringOptionsPayee = response.data;
             });
@@ -607,7 +607,7 @@
     //
     const viewUACS = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readUACS")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readUACS")
             .then(function (response) {
                 stringOptionsUACS = response.data;
             });
@@ -616,7 +616,7 @@
     // view MFOPAP
     const viewMFOPAP = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readMFOPAP")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readMFOPAP")
             .then(function (response) {
                 stringOptionsMFOPAP = response.data;
             });
@@ -772,8 +772,18 @@
                 formData.append(`amount[${index}]`, row.amounttxt);
                 formData.append(`respcen[${index}]`, row.respcentxt);
             });
+            // 
+            axios
+                .post("http://172.16.10.5/budsys2025_backend/insert.php?newORS", formData)
+                .then(function (response) {
+                    if (response.data == true) {
+                        swalAddSuccess();
+                    } else {
+                        swalError();
+                    }
+                });
             // console.log("Dark Mode:", darkMode?.value);
-            swalAddSuccess();
+            // swalAddSuccess();
         } catch (error) {
             console.log("Error");
         }

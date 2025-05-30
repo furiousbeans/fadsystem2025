@@ -294,7 +294,7 @@
         // console.log(docID.value);
         axios
             .post(
-                "http://localhost/budsys2025_backend/select.php?readORSpayee",
+                "http://172.16.10.5/budsys2025_backend/select.php?readORSpayee",
                 formData
             )
             .then(function (response) {
@@ -318,7 +318,7 @@
         formData.append("refnum", docID.value);
         axios
             .post(
-                "http://localhost/budsys2025_backend/select.php?readORSpayee_particulars",
+                "http://172.16.10.5/budsys2025_backend/select.php?readORSpayee_particulars",
                 formData
             )
             .then(function (response) {

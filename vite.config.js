@@ -23,4 +23,8 @@ export default defineConfig({
             "@": fileURLToPath(new URL("./src", import.meta.url)),
         },
     },
+    base: '/fad-system',
+    build: {
+    outDir: './fad-system',
+  },
 });

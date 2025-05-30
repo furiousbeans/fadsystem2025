@@ -230,7 +230,7 @@
     // view Project Codes
     const viewProject = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readProject")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProject")
             .then(function (response) {
                 stringOptionsProject = response.data;
             });
@@ -239,7 +239,7 @@
     // view UACS Codes
     const viewUACS = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readUACS")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readUACS")
             .then(function (response) {
                 stringOptionsUACS = response.data;
             });
@@ -248,7 +248,7 @@
     // view MFOPAP
     // const viewMFOPAP = () => {
     //     axios
-    //         .get("http://localhost/budsys2025_backend/select.php?readMFOPAP")
+    //         .get("http://172.16.10.5/budsys2025_backend/select.php?readMFOPAP")
     //         .then(function (response) {
     //             stringOptionsMFOPAP = response.data;
     //         });
@@ -318,7 +318,7 @@
 
         try {
             const response = await axios.get(
-                `http://localhost/budsys2025_backend/select.php?readParticulars&project=${selectedProject}`
+                `http://172.16.10.5/budsys2025_backend/select.php?readParticulars&project=${selectedProject}`
             );
             itemoptionsParticulars.value = response.data;
         } catch (error) {

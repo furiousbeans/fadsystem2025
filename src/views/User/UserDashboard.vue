@@ -310,6 +310,13 @@
                                         </q-select>
                                     </div>
                                     <div class="q-pa-sm col-2">
+                                        <!-- <q-input
+                                            :name="`data[${index}]mfo`"
+                                            id="mfotxtxtxt"
+                                            label="MFO"
+                                            required
+                                            v-model="row.mfotxt"
+                                        ></q-input> -->
                                         <q-select
                                             use-input
                                             fill-input
@@ -419,7 +426,7 @@
 </template>
 
 <script setup>
-    import { ref, onMounted, reactive, inject } from "vue";
+    import { ref, onMounted, reactive, inject, watch, computed } from "vue";
     import { useQuasar } from "quasar";
     import axios from "axios";
     import Swal from "sweetalert2";
@@ -579,7 +586,7 @@
         formData.append("uname", username);
         axios
             .post(
-                "http://localhost/budsys2025_backend/select.php?readORSdiv",
+                "http://172.16.10.5/budsys2025_backend/select.php?readORSdiv",
                 formData,
                 {
                     headers: {
@@ -598,7 +605,7 @@
     // view payee list
     const viewPayee = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readPayee")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readPayee")
             .then(function (response) {
                 stringOptionsPayee = response.data;
             });
@@ -608,7 +615,7 @@
     //
     const viewUACS = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readUACS")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readUACS")
             .then(function (response) {
                 stringOptionsUACS = response.data;
             });
@@ -617,7 +624,7 @@
     // view MFOPAP
     const viewMFOPAP = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readMFOPAP")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readMFOPAP")
             .then(function (response) {
                 stringOptionsMFOPAP = response.data;
             });
@@ -757,6 +764,18 @@
         ];
     };
 
+    
+    watch(
+        appendRow,
+        (newVal) => {
+            newVal.forEach((row) => {
+                row.uacstxt = row.uacsselect.label;
+                row.mfotxt = row.prjselect.value;
+            });
+        },
+        { deep: true }
+    );
+
     // =============== ADD ORS =============== //
     const addnewORS = async () => {
         try {
@@ -773,8 +792,20 @@
                 formData.append(`amount[${index}]`, row.amounttxt);
                 formData.append(`respcen[${index}]`, row.respcentxt);
             });
-            // console.log("Dark Mode:", darkMode?.value);
-            swalAddSuccess();
+            
+            axios
+                .post("http://172.16.10.5/budsys2025_backend/insert.php?newORS", formData)
+                .then(function (response) {
+                    if (response.data == true) {
+                        swalAddSuccess();
+                    } else {
+                        console.error("Insert failed. Backend returned:", response.data);
+                    }
+                });
+            
+            // for (let [key, value] of formData.entries()) {
+            //     console.log(`${key}: ${value}`);
+            // }
         } catch (error) {
             console.log("Error");
         }
@@ -849,3 +880,5 @@
         padding-bottom: 10px;
     }
 </style>
+
+

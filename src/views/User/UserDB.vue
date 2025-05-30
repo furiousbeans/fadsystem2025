@@ -429,7 +429,7 @@
     // view payee list
     const viewPayee = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readPayee")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readPayee")
             .then(function (response) {
                 stringOptionsPayee = response.data;
             });
@@ -437,7 +437,7 @@
     // view Project Codes
     const viewProject = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readProject")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProject")
             .then(function (response) {
                 stringOptionsProject = response.data;
             });
@@ -446,7 +446,7 @@
     // view UACS Codes
     const viewUACS = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readUACS")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readUACS")
             .then(function (response) {
                 stringOptionsUACS = response.data;
             });

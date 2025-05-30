@@ -120,12 +120,12 @@
                                                 </td>
                                                 <td>
                                                     <q-btn
+                                                        @click="ORSNumModal(props)" 
                                                         dense
                                                         flat
                                                         icon="edit"
                                                         color="green-8"
                                                     >
-                                                        <!-- @click="ORSNumModal(props)" -->
                                                         <q-tooltip>
                                                             Edit
                                                         </q-tooltip>
@@ -255,6 +255,7 @@
                                 <div class="btn-group">
                                     <q-btn
                                         class="print-btn"
+                                        @click="printors"
                                         :color="
                                             $q.dark.isActive
                                                 ? 'blue-4'
@@ -291,6 +292,28 @@
             </q-card-section>
         </q-card>
 
+        <q-dialog v-model="setORSNumModal" persistent>
+            <q-card style="min-width: 300px">
+                <q-card-section>
+                    <div class="text-h6">Add/Edit ORS Number</div>
+                    <span class="text-blue-8">{{ docID }}</span>
+                </q-card-section>                
+                <br>
+                <q-card-section class="q-pt-none">
+                    <div style="text-align: center;">
+                        <q-input style="width:90%;display: inline-block;" label="ORS Number" v-model="orsNumTxt"  />
+                    </div>
+                </q-card-section>
+
+                
+
+                <q-card-actions align="right" class="text-primary">
+                    <q-btn flat label="Cancel" v-close-popup />
+                    <q-btn type="submit" name="sigform"  dense color="teal" label="Save" @click="aprORS() "/>
+                </q-card-actions>
+            </q-card>
+        </q-dialog>
+<!--  -->
         <q-dialog v-model="editORSDetailsModal">
             <q-card style="min-width: 600px; min-height: 300px;">
                 <q-card-section>
@@ -298,14 +321,13 @@
                         <div class="text-h6">Edit ORS Details</div>
                         <span class="text-blue-8">{{ docID }}</span>
                         <q-card-section>
-                            {{ selectedOrsId }}
+                            <!-- {{ selectedOrsId }} {{ selectedPrjID }} -->
                                 <input label="UACS init" required v-model="inituacstxt" hidden  />
                                 <input label="UACS changed" required v-model="uacscodetxt" hidden />
 
                                 <input label="MFO init" required v-model="initmfopaptxt" hidden  />
                                 <input label="MFO changed" required v-model="mfopaptxt" hidden />
 
-                                <!-- <input label="LIB id" required v-model="libtxt"  /> -->
                                 <div class="row">
                                     <div class="col-4">  
                                         <q-select
@@ -352,11 +374,9 @@
                                     fill-input
                                     hide-selected
                                     input-debounce="0"
-                                    @filter="filterFnLIB"
                                     v-model="LIBItemsSelect"
                                     :options="itemoptionsLIB"
                                     label="LIB Item"
-                                    map-options
                                     required
                                 >
                                 </q-select>
@@ -383,6 +403,7 @@
     import { useQuasar } from "quasar";
     import VueQrcode from "@chenfengyuan/vue-qrcode";
     import axios from "axios";
+    import Swal from "sweetalert2";
 
     const $q = useQuasar();
 
@@ -415,13 +436,15 @@
     // const displaylibtitle = ref("");
     const displayorsid = ref("");
 
+    // 
+
     const viewORSdetails = () => {
         var formData = new FormData();
         formData.append("refnum", docID.value);
         // console.log(docID.value);
         axios
             .post(
-                "http://localhost/budsys2025_backend/select.php?readORSpayee",
+                "http://172.16.10.5/budsys2025_backend/select.php?readORSpayee",
                 formData
             )
             .then(function (response) {
@@ -448,7 +471,7 @@
         formData.append("refnum", docID.value);
         axios
             .post(
-                "http://localhost/budsys2025_backend/select.php?readORSpayee_particulars",
+                "http://172.16.10.5/budsys2025_backend/select.php?readORSpayee_particulars",
                 formData
             )
             .then(function (response) {
@@ -458,14 +481,53 @@
 
 
 
+    const setORSNumModal = ref(false);
     const editORSDetailsModal = ref(false);
     const selectedOrsId = ref(null);
+    const selectedPrjID = ref(null);
 
-    function editRowModal(item) {
+
+    // Edit ORS number
+    const orsNumTxt = displayorsnum;
+
+    const ORSNumModal = (props) => {
+        setORSNumModal.value = true;
+    };
+
+    const aprORS = (props) => {
+        var formData = new FormData();
+        formData.append("refnum", docID.value);
+        formData.append("orsnumtxt", orsNumTxt.value);
+        axios
+        .post("http://172.16.10.5/budsys2025_backend/update.php?approveORS", formData)
+        .then(function (response) {
+            if((response.data == true)){
+                setORSNumModal.value = false;
+                swalSuccess();
+                console.log("nice");
+            }
+            else{
+                console.log("noooo");
+            }
+        });
+    };
+
+    const swalSuccess = () => {
+        Swal.fire({
+            title: 'Success!',
+            text: 'ORS number saved',
+            icon: 'success',
+            confirmButtonText: 'Close'
+        });
+    };
+
+    const itemoptionsLIB = ref([]);
+        
+    async function editRowModal(item) {
+        editORSDetailsModal.value = true
+        
         selectedOrsId.value = item.ors_id;
-        editORSDetailsModal.value = true;
-
-        viewLIBItems();
+        selectedPrjID.value = item.mfopap;
 
         inituacstxt.value = item.uacs;
         initmfopaptxt.value = item.mfopap;
@@ -475,8 +537,51 @@
 
         uacsSelect.value = item.uacs;
         mfopapSelect.value = item.mfopap;
-        
+
+        try {
+            var formData = new FormData();
+            formData.append("prjID", selectedPrjID.value);
+            const response = await axios.post(
+                "http://172.16.10.5/budsys2025_backend/select.php?readLIBItemList", formData
+            )
+            console.log("Sending prjID:", selectedPrjID.value)
+            console.log("LIB response:", response.data)
+
+            console.log("response.data type:", typeof response.data);
+            console.log("response.data isArray:", Array.isArray(response.data));
+
+            if (Array.isArray(response.data)) {
+                itemoptionsLIB.value = response.data 
+            } 
+            else {
+                console.error("Unexpected response format:", response.data)
+                itemoptionsLIB.value = []
+            }
+        } catch (error) {
+            console.error('Failed to fetch LIB items:', error)
+        }
     }
+
+
+
+    // function editRowModal(item) {
+    //     selectedOrsId.value = item.ors_id;
+    //     editORSDetailsModal.value = true;
+
+    //     selectedPrjID.value = item.mfopap;
+
+    //     viewLIBItems();
+
+    //     inituacstxt.value = item.uacs;
+    //     initmfopaptxt.value = item.mfopap;
+    //     amounttxtValue.value = item.amount;
+
+    //     libtxt.value = LIBItemsSelect.value;
+
+    //     uacsSelect.value = item.uacs;
+    //     mfopapSelect.value = item.mfopap;
+        
+    // }
 
     const uacscodetxt = ref("");
     const inituacstxt = ref("");
@@ -496,7 +601,7 @@
 
     const itemoptionsUACS = ref([stringOptionsUACS]);
     const itemoptionsPrj = ref([stringOptionsPrj]);
-    const itemoptionsLIB = ref([stringOptionsLIB]);
+    // const itemoptionsLIB = ref([stringOptionsLIB]);
 
     const filterFnUACS = (val, update) => {
       if (val === "") {
@@ -530,40 +635,41 @@
       });
   };
 
-  const filterFnLIB = (val, update) => {
-      if (val === "") {
-          update(() => {
-              itemoptionsLIB.value = stringOptionsLIB;
-          });
-          return;
-      }
+//   const filterFnLIB = (val, update) => {
+//       if (val === "") {
+//           update(() => {
+//               itemoptionsLIB.value = stringOptionsLIB;
+//           });
+//           return;
+//       }
 
-      update(() => {
-        const needle = val.toLowerCase();
-        itemoptionsLIB.value = stringOptionsLIB.filter(
-            (v) => v.label.toLowerCase().indexOf(needle) > -1
-        );
-      });
-  };
+//       update(() => {
+//         const needle = val.toLowerCase();
+//         itemoptionsLIB.value = stringOptionsLIB.filter(
+//             (v) => v.label.toLowerCase().indexOf(needle) > -1
+//         );
+//       });
+//   };
 
   const viewUACS = () => {
     axios
-      .get("http://localhost/budsys2025_backend/select.php?readUACS")
+      .get("http://172.16.10.5/budsys2025_backend/select.php?readUACS")
       .then(function (response) {
         stringOptionsUACS = response.data;
     });
   };
   const viewProject = () => {
   axios
-    .get("http://localhost/budsys2025_backend/select.php?readProjectFunding")
+    .get("http://172.16.10.5/budsys2025_backend/select.php?readProjectFunding")
     .then(function (response) {
         stringOptionsPrj = response.data;
   });
 };
 
+
   const viewLIBItems = () => {
   axios
-            .get("http://localhost/budsys2025_backend/select.php?readLIBItemList")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readLIBItemList")
     .then(function (response) {
         stringOptionsLIB = response.data;
   });
@@ -576,6 +682,23 @@ watch(uacsSelect, (newValue) => {
 watch(mfopapSelect, (newValue) => {
   mfopaptxt.value = newValue.value;
 });
+
+
+    const printors = () => {
+        console.log(docID.value);
+        var formData = new FormData();
+        formData.append("id", docID.value);
+        axios
+            .post("http://172.16.10.5/budsys2025_backend/printors.php?printORS", formData, {
+                responseType: "arraybuffer",
+            })
+            .then(function (response) {
+                var file = new Blob([response.data], {
+                    type: "application/pdf",
+                });
+                var fileURL = URL.createObjectURL(file);
+            });
+    };
 
 
 // SAVE ORS ITEM DETAILS
@@ -602,7 +725,7 @@ watch(mfopapSelect, (newValue) => {
 
 
     axios
-    .post("http://localhost/budsys2025_backend/update.php?updateORSrow", formData)
+    .post("http://172.16.10.5/budsys2025_backend/update.php?updateORSrow", formData)
     .then(function (response) {
         if((response.data == true)){
         //   console.log(response.data);
@@ -619,6 +742,7 @@ watch(mfopapSelect, (newValue) => {
   catch (error){
     console.error("Error occurred:", error);
   }
+
 };
 
 // SAVE ORS ITEM DETAILS
@@ -709,5 +833,7 @@ watch(mfopapSelect, (newValue) => {
         }
     }
 </style>
+
+
 
 

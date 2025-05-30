@@ -9,6 +9,7 @@
                                 ref="tableRef"
                                 :rows="rows"
                                 :columns="columns"
+                                :pagination="{rowsPerPage: 0}"
                                 title="LIB Database"
                             >
                                 <template v-slot:body-cell-prj_title="props">
@@ -98,12 +99,24 @@
             }).format,
         },
         {
+            field: "total_obli",
             label: "Accumulated Obligation",
-            align: "center",
+            field: "total_obli",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
         },
         {
             label: "Unexpended Allotment",
-            align: "center",
+            field: "balance",
+            field: "balance",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
         },
     ];
 
@@ -143,7 +156,7 @@
 
     const viewProject = () => {
         axios
-            .get("http://localhost/budsys2025_backend/select.php?readProject")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProject")
             .then(function (response) {
                 // console.log(response.data);
                 rows.value = response.data;
@@ -162,7 +175,7 @@
         var formData = new FormData();
         formData.append("refnum", libID.value);
         axios
-            .post("http://localhost/budsys2025_backend/select.php?getLibItems", formData)
+            .post("http://172.16.10.5/budsys2025_backend/select.php?getLibItems", formData)
             .then((response) => {
                 LIBrows.value = response.data;
             })
@@ -271,7 +284,7 @@ const openProjectModal = (row) => {
     var formData = new FormData();
     formData.append("refnum", libID.value);
     axios
-        .post("http://localhost/budsys2025_backend/select.php?getLibItems")
+        .post("http://172.16.10.5/budsys2025_backend/select.php?getLibItems")
         .then((response) => {
             libItems.value = response.data;
         })
