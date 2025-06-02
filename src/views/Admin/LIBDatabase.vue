@@ -1,6 +1,150 @@
 <template>
     <div class="q-pa-md">
         <q-card class="card-container" flat>
+            <q-card-section class="col orsdetails-card">
+                <q-card class="ors-card" flat bordered>
+                    <q-card flat>
+                        <div class="row items-center justify-between">
+                            <span class="card-text text-title">LIB Database</span>
+                        </div>
+                        <div
+                            class="q-pa-x-md row items-center q-gutter-x-sm"
+                            style="margin-top: 30px"
+                        >
+                            <q-card
+                                flat
+                                id="sticky-card"
+                                style="
+                                    width: 100%;
+                                "
+                            >
+                                <q-tabs
+                                    v-model="tab"
+                                    align="justify"
+                                    indicator
+                                    mobile-arrows
+                                    outside-arrows
+                                    :breakpoint="600"
+                                >
+                                    <q-tab
+                                        name="tab1"
+                                        class="text-white tab1 tabs"
+                                        :class="{
+                                            'active-tab': tab === 'tab1',
+                                        }"
+                                        label="FAD AC"
+                                    />
+                                    <q-tab
+                                        name="tab2"
+                                        class="text-white tab2 tabs"
+                                        :class="{
+                                            'active-tab': tab === 'tab2',
+                                        }"
+                                        label="OD/ODD AC"
+                                    />
+                                    <q-tab
+                                        name="tab3"
+                                        class="text-white tabs"
+                                        :class="{
+                                            'active-tab': tab === 'tab3',
+                                        }"
+                                        label="2A1-STSD"
+                                    />
+                                    <q-tab
+                                        name="tab4"
+                                        class="text-white tabs"
+                                        :class="{
+                                            'active-tab': tab === 'tab4',
+                                        }"
+                                        label="2A2A-STHERPD"
+                                    />
+                                    <q-tab
+                                        name="tab5"
+                                        class="text-white tabs"
+                                        :class="{
+                                            'active-tab': tab === 'tab5',
+                                        }"
+                                        label="2A2B-SEID"
+                                    />
+                                    <q-tab
+                                        name="tab6"
+                                        class="text-white tabs"
+                                        :class="{
+                                            'active-tab': tab === 'tab6',
+                                        }"
+                                        label="3A1"
+                                    />
+                                </q-tabs>
+                                <q-tab-panels v-model="tab" animated>
+                                    <q-tab-panel name="tab1" class="tabpanel">
+                                        <q-table
+                                            ref="tableFAD"
+                                            :rows="rowsFAD"
+                                            :columns="columnsFAD"
+                                            :pagination="{rowsPerPage: 0}"
+                                        >
+                                            <template v-slot:body-cell-prj_title="props">
+                                                <q-td :props="props">
+                                                    <q-btn
+                                                        flat
+                                                        @click="openProjectModal(props.row)"
+                                                    >
+                                                        {{ props.row.prj_title }}
+                                                        <q-tooltip> View Project </q-tooltip>
+                                                    </q-btn>
+                                                </q-td>
+                                            </template>
+                                        </q-table>
+                                    </q-tab-panel>
+                                    <q-tab-panel name="tab2" class="tabpanel">
+                                        <q-table
+                                            ref="tableODAC"
+                                            :rows="rowsODAC"
+                                            :columns="columnsODAC"
+                                            :pagination="{rowsPerPage: 0}"
+                                        >
+                                            <template v-slot:body-cell-prj_title="props">
+                                                <q-td :props="props">
+                                                    <q-btn
+                                                        flat
+                                                        @click="openProjectModal(props.row)"
+                                                    >
+                                                        {{ props.row.prj_title }}
+                                                        <q-tooltip> View Project </q-tooltip>
+                                                    </q-btn>
+                                                </q-td>
+                                            </template>
+                                        </q-table>
+                                    </q-tab-panel>
+                                    <q-tab-panel name="tab3" class="tabpanel">
+                                        <q-table
+                                            ref="tableSTSD"
+                                            :rows="rowsSTSD"
+                                            :columns="columnsSTSD"
+                                            :pagination="{rowsPerPage: 0}"
+                                        >
+                                            <template v-slot:body-cell-prj_title="props">
+                                                <q-td :props="props">
+                                                    <q-btn
+                                                        flat
+                                                        @click="openProjectModal(props.row)"
+                                                    >
+                                                        {{ props.row.prj_title }}
+                                                        <q-tooltip> View Project </q-tooltip>
+                                                    </q-btn>
+                                                </q-td>
+                                            </template>
+                                        </q-table>
+                                    </q-tab-panel>
+                                </q-tab-panels>
+                            </q-card>
+                        </div>
+                    </q-card>
+                </q-card>
+            </q-card-section>
+        </q-card>
+
+        <!-- <q-card class="card-container" flat>
             <q-card class="my-card" flat style="border-radius: 20px">
                 <q-card-section horizontal>
                     <q-card-section class="col" style="padding: 45px">
@@ -28,9 +172,10 @@
                     </q-card-section>
                 </q-card-section>
             </q-card>
-        </q-card>
+        </q-card> -->
+
         <q-dialog v-model="LIBDialog">
-            <q-card style="min-width: 1000px; min-height: 600px;">
+            <q-card style="min-width: 1000px;">
                 <q-card-section>
                     <div style="padding:15px">
                         <h5>{{ selectedProject?.prj_title }}</h5>
@@ -62,20 +207,22 @@
 
     const darkMode = inject("darkMode");
 
+    
+    const tab = ref("tab1");
+
     onMounted(() => {
         document.title = "FAD System | LIB Database";
-        viewProject();
+        viewProjectFAD();
+        viewProjectSTSD();
+        viewProjectSTHERPD();
+        viewProjectSEID();
+        viewProjectOD();
+        viewProjectODAC();
     });
 
-    const tableRef = ref();
-    const rows = ref([]);
-    const columns = [
-        {
-            name: "prj_div",
-            label: "Division",
-            field: "prj_div",
-            align: "center",
-        },
+    const tableFAD = ref();
+    const rowsFAD = ref([]);
+    const columnsFAD = [
         {
             name: "prj_title",
             label: "Project Title",
@@ -120,6 +267,294 @@
         },
     ];
 
+    const tableSTSD = ref();
+    const rowsSTSD = ref([]);
+    const columnsSTSD = [
+        {
+            name: "prj_title",
+            label: "Project Title",
+            field: "prj_title",
+            align: "left",
+        },
+        {
+            name: "prj_fund",
+            label: "Fund Source",
+            field: "prj_fund",
+            align: "center",
+        },
+        {   
+            field: "total_allotment",
+            label: "Total Allotment",
+            field: "total_allotment",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            field: "total_obli",
+            label: "Accumulated Obligation",
+            field: "total_obli",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            label: "Unexpended Allotment",
+            field: "balance",
+            field: "balance",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+    ];
+
+    const tableSTHERPD = ref();
+    const rowsSTHERPD = ref([]);
+    const columnsSTHERPD = [
+        {
+            name: "prj_title",
+            label: "Project Title",
+            field: "prj_title",
+            align: "left",
+        },
+        {
+            name: "prj_fund",
+            label: "Fund Source",
+            field: "prj_fund",
+            align: "center",
+        },
+        {   
+            field: "total_allotment",
+            label: "Total Allotment",
+            field: "total_allotment",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            field: "total_obli",
+            label: "Accumulated Obligation",
+            field: "total_obli",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            label: "Unexpended Allotment",
+            field: "balance",
+            field: "balance",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+    ];
+
+    const tableSEID = ref();
+    const rowsSEID = ref([]);
+    const columnsSEID = [
+        {
+            name: "prj_title",
+            label: "Project Title",
+            field: "prj_title",
+            align: "left",
+        },
+        {
+            name: "prj_fund",
+            label: "Fund Source",
+            field: "prj_fund",
+            align: "center",
+        },
+        {   
+            field: "total_allotment",
+            label: "Total Allotment",
+            field: "total_allotment",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            field: "total_obli",
+            label: "Accumulated Obligation",
+            field: "total_obli",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            label: "Unexpended Allotment",
+            field: "balance",
+            field: "balance",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+    ];
+
+    const tableOD = ref();
+    const rowsOD = ref([]);
+    const columnsOD = [
+        {
+            name: "prj_title",
+            label: "Project Title",
+            field: "prj_title",
+            align: "left",
+        },
+        {
+            name: "prj_fund",
+            label: "Fund Source",
+            field: "prj_fund",
+            align: "center",
+        },
+        {   
+            field: "total_allotment",
+            label: "Total Allotment",
+            field: "total_allotment",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            field: "total_obli",
+            label: "Accumulated Obligation",
+            field: "total_obli",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            label: "Unexpended Allotment",
+            field: "balance",
+            field: "balance",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+    ];
+
+    const tableODAC = ref();
+    const rowsODAC = ref([]);
+    const columnsODAC = [
+        {
+            name: "prj_title",
+            label: "Project Title",
+            field: "prj_title",
+            align: "left",
+        },
+        {
+            name: "prj_fund",
+            label: "Fund Source",
+            field: "prj_fund",
+            align: "center",
+        },
+        {   
+            field: "total_allotment",
+            label: "Total Allotment",
+            field: "total_allotment",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            field: "total_obli",
+            label: "Accumulated Obligation",
+            field: "total_obli",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+        {
+            label: "Unexpended Allotment",
+            field: "balance",
+            field: "balance",
+            align: "right",
+            format: Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format,
+        },
+    ];
+
+    // const tableRef = ref();
+    // const rows = ref([]);
+    // const columns = [
+    //     {
+    //         name: "prj_div",
+    //         label: "Division",
+    //         field: "prj_div",
+    //         align: "center",
+    //     },
+    //     {
+    //         name: "prj_title",
+    //         label: "Project Title",
+    //         field: "prj_title",
+    //         align: "left",
+    //     },
+    //     {
+    //         name: "prj_fund",
+    //         label: "Fund Source",
+    //         field: "prj_fund",
+    //         align: "center",
+    //     },
+    //     {   
+    //         field: "total_allotment",
+    //         label: "Total Allotment",
+    //         field: "total_allotment",
+    //         align: "right",
+    //         format: Intl.NumberFormat("en-US", {
+    //             minimumFractionDigits: 2,
+    //             maximumFractionDigits: 2,
+    //         }).format,
+    //     },
+    //     {
+    //         field: "total_obli",
+    //         label: "Accumulated Obligation",
+    //         field: "total_obli",
+    //         align: "right",
+    //         format: Intl.NumberFormat("en-US", {
+    //             minimumFractionDigits: 2,
+    //             maximumFractionDigits: 2,
+    //         }).format,
+    //     },
+    //     {
+    //         label: "Unexpended Allotment",
+    //         field: "balance",
+    //         field: "balance",
+    //         align: "right",
+    //         format: Intl.NumberFormat("en-US", {
+    //             minimumFractionDigits: 2,
+    //             maximumFractionDigits: 2,
+    //         }).format,
+    //     },
+    // ];
+
     const libID = ref();
     const LIBtable = ref();
     const LIBrows = ref([]);
@@ -154,12 +589,57 @@
 
 
 
-    const viewProject = () => {
+    const viewProjectFAD = () => {
         axios
-            .get("http://172.16.10.5/budsys2025_backend/select.php?readProject")
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProjectFAD")
             .then(function (response) {
                 // console.log(response.data);
-                rows.value = response.data;
+                rowsFAD.value = response.data;
+            });
+    };
+
+    const viewProjectSTSD = () => {
+        axios
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProjectSTSD")
+            .then(function (response) {
+                // console.log(response.data);
+                rowsSTSD.value = response.data;
+            });
+    };
+
+    const viewProjectSTHERPD = () => {
+        axios
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProjectSTHERPD")
+            .then(function (response) {
+                // console.log(response.data);
+                rowsSTHERPD.value = response.data;
+            });
+    };
+
+    const viewProjectSEID = () => {
+        axios
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProjectSEID")
+            .then(function (response) {
+                // console.log(response.data);
+                rowsSEID.value = response.data;
+            });
+    };
+
+    const viewProjectOD = () => {
+        axios
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProjectOD")
+            .then(function (response) {
+                // console.log(response.data);
+                rowsOD.value = response.data;
+            });
+    };
+
+    const viewProjectODAC = () => {
+        axios
+            .get("http://172.16.10.5/budsys2025_backend/select.php?readProjectODAC")
+            .then(function (response) {
+                // console.log(response.data);
+                rowsODAC.value = response.data;
             });
     };
 
@@ -271,6 +751,41 @@
             padding: 8px;
         }
     }
+
+    
+
+    /* =============== Tabs CSS =============== */
+    .tab1 {
+        margin-left: 0px !important;
+    }
+    .tabs {
+        border-top-left-radius: 25px;
+        border-top-right-radius: 8px;
+        margin-left: 1px;
+        background-color: #289ad8;
+        color: #fff;
+    }
+
+    .active-tab {
+        background-color: #4eaab1 !important;
+        font-weight: bold;
+        border: 1px solid #4eaab1;
+    }
+
+    .tabpanel {
+        border: 1px solid #cacaca;
+    }
+
+    .body--dark .active-tab {
+        background-color: #4eaab1 !important;
+        font-weight: bold;
+        border: 1px solid #4eaab1;
+    }
+    .body--dark .tabs {
+        background-color: #447f9e;
+        color: #fff;
+    }
+    /* =============== Tabs CSS =============== */
 </style>
 
 

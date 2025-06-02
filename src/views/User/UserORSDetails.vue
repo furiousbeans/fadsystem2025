@@ -218,6 +218,7 @@
                                 <div class="btn-group">
                                     <q-btn
                                         class="print-btn"
+                                        @click="printors"
                                         :color="
                                             $q.dark.isActive
                                                 ? 'blue-4'
@@ -228,6 +229,7 @@
                                     </q-btn>
                                     <q-btn
                                         class="print-btn"
+                                        @click="printburs"
                                         :color="
                                             $q.dark.isActive
                                                 ? 'teal-6'
@@ -238,6 +240,7 @@
                                     >
                                     <q-btn
                                         class="print-btn"
+                                        @click="printdv"
                                         :color="
                                             $q.dark.isActive
                                                 ? 'purple-6'
@@ -325,6 +328,64 @@
                 displayorsparticulars.value = response.data[0].particulars;
             });
     };
+
+
+    const printors = () => {
+        console.log(docID.value);
+        var formData = new FormData();
+        formData.append("id", docID.value);
+        axios
+            .post("http://172.16.10.5/budsys2025_backend/printors.php?printORS", formData, {
+                responseType: "arraybuffer",
+            })
+            .then(function (response) {
+                var file = new Blob([response.data], {
+                    type: "application/pdf",
+                });
+                var fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            });
+    };
+
+
+
+    const printburs = () => {
+        console.log(docID.value);
+        var formData = new FormData();
+        formData.append("id", docID.value);
+        axios
+            .post("http://172.16.10.5/budsys2025_backend/printburs.php?printBURS", formData, {
+                responseType: "arraybuffer",
+            })
+            .then(function (response) {
+                var file = new Blob([response.data], {
+                    type: "application/pdf",
+                });
+                var fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            });
+    };
+
+
+
+    const printdv = () => {
+        console.log(docID.value);
+        var formData = new FormData();
+        formData.append("id", docID.value);
+        axios
+            .post("http://172.16.10.5/budsys2025_backend/printdv.php?printDV", formData, {
+                responseType: "arraybuffer",
+            })
+            .then(function (response) {
+                var file = new Blob([response.data], {
+                    type: "application/pdf",
+                });
+                var fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            });
+    };
+
+
 </script>
 
 <style scoped>

@@ -131,6 +131,7 @@
                             exact-active-class="listActive"
                             class="listItem"
                             style="padding-left: 70px; font-size: 12px"
+                            hidden
                         >
                             <q-item-section
                                 class="nav-list-item"

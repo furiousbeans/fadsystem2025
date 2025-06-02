@@ -83,6 +83,7 @@
                                                 <q-btn
                                                     dense
                                                     flat
+                                                    @click="printors(props)"
                                                     icon="print"
                                                     color="primary"
                                                 >
@@ -93,6 +94,7 @@
                                                 <q-btn
                                                     dense
                                                     flat
+                                                    @click="printburs"
                                                     icon="print"
                                                     color="green-8"
                                                 >
@@ -103,6 +105,7 @@
                                                 <q-btn
                                                     dense
                                                     flat
+                                                    @click="printdv"
                                                     icon="print"
                                                     color="deep-orange-13"
                                                 >
@@ -158,6 +161,7 @@
                                     >Cancel</q-btn
                                 >
                             </div>
+                            <!--  -->
                             <form id="orsdetails" @submit.prevent="addnewORS">
                                 <div class="q-pa-x-md row">
                                     <div class="q-pa-sm col-6">
@@ -802,6 +806,71 @@
         });
     };
     // =============== SweetAlert =============== //
+
+    
+    const currentprops = ref();
+
+    const printors= () => {
+        currentprops.value = props;
+        console.log(currentprops.value);
+    };
+    
+
+    // const printors = () => {
+    //     console.log(docID.value);
+    //     var formData = new FormData();
+    //     formData.append("id", docID.value);
+    //     axios
+    //         .post("http://172.16.10.5/budsys2025_backend/printors.php?printORS", formData, {
+    //             responseType: "arraybuffer",
+    //         })
+    //         .then(function (response) {
+    //             var file = new Blob([response.data], {
+    //                 type: "application/pdf",
+    //             });
+    //             var fileURL = URL.createObjectURL(file);
+    //             window.open(fileURL);
+    //         });
+    // };
+
+
+
+    const printburs = () => {
+        console.log(docID.value);
+        var formData = new FormData();
+        formData.append("id", docID.value);
+        axios
+            .post("http://172.16.10.5/budsys2025_backend/printburs.php?printBURS", formData, {
+                responseType: "arraybuffer",
+            })
+            .then(function (response) {
+                var file = new Blob([response.data], {
+                    type: "application/pdf",
+                });
+                var fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            });
+    };
+
+
+
+    const printdv = () => {
+        console.log(docID.value);
+        var formData = new FormData();
+        formData.append("id", docID.value);
+        axios
+            .post("http://172.16.10.5/budsys2025_backend/printdv.php?printDV", formData, {
+                responseType: "arraybuffer",
+            })
+            .then(function (response) {
+                var file = new Blob([response.data], {
+                    type: "application/pdf",
+                });
+                var fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            });
+    };
+
 </script>
 
 <style>
