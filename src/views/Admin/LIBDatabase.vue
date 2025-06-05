@@ -174,8 +174,10 @@
             </q-card>
         </q-card> -->
 
+        <!--  -->
+
         <q-dialog v-model="LIBDialog">
-            <q-card style="min-width: 1000px;">
+            <q-card style="min-width: 1500px;">
                 <q-card-section>
                     <div style="padding:15px">
                         <h5>{{ selectedProject?.prj_title }}</h5>
@@ -236,7 +238,7 @@
             align: "center",
         },
         {   
-            field: "total_allotment",
+            name: "total_allotment",
             label: "Total Allotment",
             field: "total_allotment",
             align: "right",
@@ -246,7 +248,7 @@
             }).format,
         },
         {
-            field: "total_obli",
+            name: "total_obli",
             label: "Accumulated Obligation",
             field: "total_obli",
             align: "right",
@@ -257,7 +259,7 @@
         },
         {
             label: "Unexpended Allotment",
-            field: "balance",
+            name: "balance",
             field: "balance",
             align: "right",
             format: Intl.NumberFormat("en-US", {
@@ -265,7 +267,20 @@
                 maximumFractionDigits: 2,
             }).format,
         },
+        {
+            label: "%",
+            name: "balance_percentage",
+            field: "balance_percentage",
+            align: "right",
+            format: val => Intl.NumberFormat("en-US", {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            }).format(val) + "%",
+            style: (row) => row.balance_percentage > 90 ? "color: red;" : ""
+        },
     ];
+
+    // 
 
     const tableSTSD = ref();
     const rowsSTSD = ref([]);
@@ -502,6 +517,8 @@
         },
     ];
 
+// 
+
     // const tableRef = ref();
     // const rows = ref([]);
     // const columns = [
@@ -587,7 +604,7 @@
         },
     ];
 
-
+// 
 
     const viewProjectFAD = () => {
         axios
@@ -615,6 +632,8 @@
                 rowsSTHERPD.value = response.data;
             });
     };
+
+    // 
 
     const viewProjectSEID = () => {
         axios
