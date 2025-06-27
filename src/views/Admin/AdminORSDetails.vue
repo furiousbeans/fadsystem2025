@@ -1,299 +1,318 @@
 <template>
+    <!--  -->
     <div class="q-pa-md">
         <q-card class="card-container" flat>
-            <q-card-section class="col orsdetails-card">
-                <q-card class="ors-card" flat bordered>
-                    <q-card flat>
-                        <div class="row items-center justify-between">
-                            <span class="card-text text-title"
-                                >ORS Details</span
-                            >
-                            <q-btn
-                                class="card-text"
-                                to="/administrator"
-                                :color="$q.dark.isActive ? 'pink-7' : 'red'"
-                                >Close</q-btn
-                            >
-                        </div>
-                        <br />
-                        <div class="q-pa-x-md row items-center q-gutter-x-sm">
-                            <div>
-                                <vue-qrcode
-                                    class="qrcode"
-                                    :value="qrData"
-                                    :options="{
-                                        width: 80,
-                                        color: {
-                                            dark: '#000',
-                                            light: '#fff',
-                                        },
-                                    }"
-                                ></vue-qrcode>
-                            </div>
-                            <!--  -->
-                            <div class="column docdetails-text">
-                                <span class="card-text">Document ID</span>
+            <q-card-section class="col orsdetails-card" >
+                <div class="row">
+                    <div class="col" style="padding-right: 5px;">
+                        <q-card class="ors-card" flat bordered>
+                            <q-card flat>
+                                <div class="row items-center justify-between">
+                                    <span class="card-text text-title"
+                                        >ORS Details</span
+                                    >
+                                    <q-btn
+                                        class="card-text"
+                                        to="/administrator"
+                                        :color="$q.dark.isActive ? 'pink-7' : 'red'"
+                                        >Close</q-btn
+                                    >
+                                </div>
                                 <br />
-                                <p
-                                    class="q-ma-none card-text"
-                                    :style="{
-                                        fontSize: '16px',
-                                        color: $q.dark.isActive
-                                            ? '#c5d9f1'
-                                            : '#31a6e0',
-                                    }"
-                                >
-                                    {{ docID }}
-                                </p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <q-markup-table
-                                class="my-table table-text"
-                                flat
-                                bordered
-                                wrap-cells
-                            >
-                                <tbody>
-                                    <tr>
-                                        <td class="table-label">Payee Name:</td>
-                                        <td class="table-label-value">
-                                            {{ displayname }}
-                                        </td>
-                                        <td class="table-label">
-                                            Account Number:
-                                        </td>
-                                        <td class="table-label-value">
-                                            {{ displayacct }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-label">Bank:</td>
-                                        <td class="table-label-value">
-                                            {{ displaybank }}
-                                        </td>
-                                        <td class="table-label">TIN:</td>
-                                        <td class="table-label-value">
-                                            {{ displaytin }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-label">
-                                            Address / Office:
-                                        </td>
-                                        <td
-                                            class="table-label-value"
-                                            colspan="3"
+                                <div class="q-pa-x-md row items-center q-gutter-x-sm">
+                                    <div>
+                                        <vue-qrcode
+                                            class="qrcode"
+                                            :value="qrData"
+                                            :options="{
+                                                width: 80,
+                                                color: {
+                                                    dark: '#000',
+                                                    light: '#fff',
+                                                },
+                                            }"
+                                        ></vue-qrcode>
+                                    </div>
+                                    <!--  -->
+                                    <div class="column docdetails-text">
+                                        <span class="card-text">Document ID</span>
+                                        <br />
+                                        <p
+                                            class="q-ma-none card-text"
+                                            :style="{
+                                                fontSize: '16px',
+                                                color: $q.dark.isActive
+                                                    ? '#c5d9f1'
+                                                    : '#31a6e0',
+                                            }"
                                         >
-                                            {{ displayoffice }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-label">
-                                            Particulars:
-                                        </td>
-                                        <td
-                                            class="table-label-value"
-                                            colspan="3"
-                                        >
-                                            {{ displayorsparticulars }}
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </q-markup-table>
+                                            {{ docID }}
+                                        </p>
+                                    </div>
+                                </div>
 
-                            <div class="row">
-                                <div class="col-4">
+                                <div>
                                     <q-markup-table
                                         class="my-table table-text"
                                         flat
                                         bordered
+                                        wrap-cells
                                     >
                                         <tbody>
                                             <tr>
-                                                <td class="table2-label">
-                                                    ORS:
+                                                <td class="table-label">Payee Name:</td>
+                                                <td class="table-label-value">
+                                                    {{ displayname }}
                                                 </td>
-                                                <td class="table2-label-value">
-                                                    {{ displayorsnum }}
+                                                <td class="table-label">
+                                                    Account Number:
                                                 </td>
-                                                <td>
-                                                    <q-btn
-                                                        @click="ORSNumModal(props)" 
-                                                        dense
-                                                        flat
-                                                        icon="edit"
-                                                        color="green-8"
-                                                    >
-                                                        <q-tooltip>
-                                                            Edit
-                                                        </q-tooltip>
-                                                    </q-btn>
+                                                <td class="table-label-value">
+                                                    {{ displayacct }}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="table2-label">
-                                                    DV:
+                                                <td class="table-label">Bank:</td>
+                                                <td class="table-label-value">
+                                                    {{ displaybank }}
+                                                </td>
+                                                <td class="table-label">TIN:</td>
+                                                <td class="table-label-value">
+                                                    {{ displaytin }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="table-label">
+                                                    Address / Office:
                                                 </td>
                                                 <td
-                                                    class="table2-label-value"
-                                                ></td>
-                                                <td></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="table2-label">
-                                                    BUR:
+                                                    class="table-label-value"
+                                                    colspan="3"
+                                                >
+                                                    {{ displayoffice }}
                                                 </td>
-                                                <td class="table2-label-value">
-                                                    {{}}
-                                                </td>
-                                                <td></td>
                                             </tr>
                                             <tr>
-                                                <td class="table2-label">
-                                                    LDDAP:
+                                                <td class="table-label">
+                                                    Particulars:
                                                 </td>
-                                                <td class="table2-label-value">
-                                                    {{}}
+                                                <td
+                                                    class="table-label-value"
+                                                    colspan="3"
+                                                >
+                                                    {{ displayorsparticulars }}
                                                 </td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="table2-label">
-                                                    Check:
-                                                </td>
-                                                <td class="table2-label-value">
-                                                    {{}}
-                                                </td>
-                                                <td></td>
                                             </tr>
                                         </tbody>
                                     </q-markup-table>
-                                </div>
 
-                                <div class="col-8">
-                                    <q-markup-table
-                                        class="my-table table-text table3"
-                                        flat
-                                        bordered
-                                    >
-                                        <tbody>
-                                            <!-- Table Header Row -->
-                                            <tr
-                                                :class="[
-                                                    'table-header',
-                                                    {
-                                                        'dark-mode':
-                                                            $q.dark.isActive,
-                                                    },
-                                                ]"
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <q-markup-table
+                                                class="my-table table-text"
+                                                flat
+                                                bordered
                                             >
-                                                <td class="table-empty"></td>
-                                                <td class="table-header-text">
-                                                    UACS
-                                                </td>
-                                                <td class="table-header-text">
-                                                    MFO/PAP
-                                                </td>
-                                                <td class="table-header-text">
-                                                    Amount
-                                                </td>
-                                                <td class="table-header-text">
-                                                    LIB Item
-                                                </td>
-                                                <td class="table-header-text">
-                                                    Action
-                                                </td>
-                                                <td class="table-empty"></td>
-                                            </tr>
-                                            <tr
-                                                v-for="item in modalorspayee"
-                                                :key="item.id"
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="table2-label">
+                                                            ORS:
+                                                        </td>
+                                                        <td class="table2-label-value">
+                                                            {{ displayorsnum }}
+                                                        </td>
+                                                        <td>
+                                                            <q-btn
+                                                                @click="ORSNumModal(props)" 
+                                                                dense
+                                                                flat
+                                                                icon="edit"
+                                                                color="green-8"
+                                                                style="float: right;"
+                                                            >
+                                                                <q-tooltip>
+                                                                    Edit
+                                                                </q-tooltip>
+                                                            </q-btn>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table2-label">
+                                                            DV:
+                                                        </td>
+                                                        <td
+                                                            class="table2-label-value"
+                                                        ></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="table2-label">
+                                                            BUR:
+                                                        </td>
+                                                        <td class="table2-label-value">
+                                                            {{}}
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table2-label">
+                                                            LDDAP:
+                                                        </td>
+                                                        <td class="table2-label-value">
+                                                            {{}}
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="table2-label">
+                                                            Check:
+                                                        </td>
+                                                        <td class="table2-label-value">
+                                                            {{}}
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </q-markup-table>
+                                        </div>
+
+                                        <div class="col-8">
+                                            <q-markup-table
+                                                class="my-table table-text table3"
+                                                flat
+                                                bordered
                                             >
-                                                <td class="table-empty"></td>
-                                                <td class="table-cell">
-                                                    {{ item.uacs }}
-                                                </td>
-                                                <td class="table-cell">
-                                                    {{ item.mfopap }}
-                                                </td>
-                                                <td class="table-cell">
-                                                    {{
-                                                        Number(
-                                                            item.amount
-                                                        ).toLocaleString(
-                                                            undefined,
+                                                <tbody>
+                                                    <!-- Table Header Row -->
+                                                    <tr
+                                                        :class="[
+                                                            'table-header',
                                                             {
-                                                                minimumFractionDigits: 2,
-                                                            }
-                                                        )
-                                                    }}
-                                                </td>
-                                                <td class="table-cell">
-                                                    <!-- {{ item.ors_id }} -->
-                                                   <span v-if="item.lib_title">
-                                                        {{ item.lib_title.length > 30 ? item.lib_title.substring(0, 30) + '…' : item.lib_title }}
-                                                    </span>
-                                                </td>
-                                                <td class="table-cell">
-                                                    <q-btn flat
-                                                    @click="editRowModal(item)"
-                                                    :color="$q.dark.isActive ? 'pink-4' : 'red'" >
-                                                        <q-icon name="edit" />
-                                                    </q-btn>
-                                                </td>
-                                                <td class="table-empty"></td>
-                                            </tr>
-                                        </tbody>
-                                    </q-markup-table>
-                                </div>
-                            </div>
+                                                                'dark-mode':
+                                                                    $q.dark.isActive,
+                                                            },
+                                                        ]"
+                                                    >
+                                                        <td class="table-empty"></td>
+                                                        <td class="table-header-text">
+                                                            UACS
+                                                        </td>
+                                                        <td class="table-header-text">
+                                                            MFO/PAP
+                                                        </td>
+                                                        <td class="table-header-text">
+                                                            Amount
+                                                        </td>
+                                                        <td class="table-header-text">
+                                                            LIB Item
+                                                        </td>
+                                                        <td class="table-header-text">
+                                                            Action
+                                                        </td>
+                                                        <td class="table-empty"></td>
+                                                    </tr>
+                                                    <tr
+                                                        v-for="item in modalorspayee"
+                                                        :key="item.id"
+                                                    >
+                                                        <td class="table-empty"></td>
+                                                        <td class="table-cell">
+                                                            {{ item.uacs }}
+                                                        </td>
+                                                        <td class="table-cell">
+                                                            {{ item.mfopap }}
+                                                        </td>
+                                                        <td class="table-cell">
+                                                            {{
+                                                                Number(
+                                                                    item.amount
+                                                                ).toLocaleString(
+                                                                    undefined,
+                                                                    {
+                                                                        minimumFractionDigits: 2,
+                                                                    }
+                                                                )
+                                                            }}
+                                                        </td>
+                                                        <td class="table-cell">
+                                                            <!-- {{ item.ors_id }} -->
+                                                        <span v-if="item.lib_title">
+                                                                {{ item.lib_title.length > 30 ? item.lib_title.substring(0, 30) + '…' : item.lib_title }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="table-cell">
+                                                            <q-btn flat
+                                                            @click="editRowModal(item)"
+                                                            :color="$q.dark.isActive ? 'pink-4' : 'red'" >
+                                                                <q-icon name="edit" />
+                                                            </q-btn>
+                                                        </td>
+                                                        <td class="table-empty"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </q-markup-table>
+                                        </div>
+                                    </div>
 
-                            <div class="row btn-group-cont">
-                                <div class="btn-group">
-                                    <q-btn
-                                        class="print-btn"
-                                        @click="printors"
-                                        :color="
-                                            $q.dark.isActive
-                                                ? 'blue-4'
-                                                : 'primary'
-                                        "
-                                    >
-                                        Print ORS
-                                    </q-btn>
-                                    <q-btn
-                                        class="print-btn"
-                                        @click="printburs"
-                                        :color="
-                                            $q.dark.isActive
-                                                ? 'teal-6'
-                                                : 'teal-8'
-                                        "
-                                    >
-                                        Print BURS</q-btn
-                                    >
-                                    <q-btn
-                                        class="print-btn"
-                                        @click="printdv"
-                                        :color="
-                                            $q.dark.isActive
-                                                ? 'purple-6'
-                                                : 'purple-9'
-                                        "
-                                    >
-                                        Print DV</q-btn
+                                    <div class="row btn-group-cont">
+                                        <div class="btn-group">
+                                            <q-btn
+                                                class="print-btn"
+                                                @click="printors"
+                                                :color="
+                                                    $q.dark.isActive
+                                                        ? 'blue-4'
+                                                        : 'primary'
+                                                "
+                                            >
+                                                Print ORS
+                                            </q-btn>
+                                            <q-btn
+                                                class="print-btn"
+                                                @click="printburs"
+                                                :color="
+                                                    $q.dark.isActive
+                                                        ? 'teal-6'
+                                                        : 'teal-8'
+                                                "
+                                            >
+                                                Print BURS</q-btn
+                                            >
+                                            <q-btn
+                                                class="print-btn"
+                                                @click="printdv"
+                                                :color="
+                                                    $q.dark.isActive
+                                                        ? 'purple-6'
+                                                        : 'purple-9'
+                                                "
+                                            >
+                                                Print DV</q-btn
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </q-card>
+                        </q-card>
+                    </div>
+                    <div class="col" style="padding-left: 5px;">
+                        <q-card class="ors-card" flat bordered>
+                            <q-card flat>
+                                <div class="row items-center justify-between">
+                                    <span class="card-text text-title"
+                                        >LIB Details</span
                                     >
                                 </div>
-                            </div>
-                        </div>
-                    </q-card>
-                </q-card>
+                            </q-card>
+                        </q-card>
+                    </div>
+                </div>
             </q-card-section>
         </q-card>
 
+        <!--  -->
+        
         <q-dialog v-model="setORSNumModal" persistent>
             <q-card style="min-width: 300px">
                 <q-card-section>
@@ -468,6 +487,8 @@
             });
     };
 
+// s
+
     const viewORSdetails_particulars = () => {
         var formData = new FormData();
         formData.append("refnum", docID.value);
@@ -480,8 +501,6 @@
                 displayorsparticulars.value = response.data[0].particulars;
             });
     };
-
-
 
     const setORSNumModal = ref(false);
     const editORSDetailsModal = ref(false);
@@ -513,6 +532,8 @@
             }
         });
     };
+
+// 
 
     const swalSuccess = () => {
         Swal.fire({
@@ -564,14 +585,14 @@
         }
     }
 
-
+    // 
 
     // function editRowModal(item) {
     //     selectedOrsId.value = item.ors_id;
     //     editORSDetailsModal.value = true;
 
     //     selectedPrjID.value = item.mfopap;
-
+// 
     //     viewLIBItems();
 
     //     inituacstxt.value = item.uacs;
@@ -584,6 +605,10 @@
     //     mfopapSelect.value = item.mfopap;
         
     // }
+
+
+    // 
+
 
     const uacscodetxt = ref("");
     const inituacstxt = ref("");
@@ -605,6 +630,8 @@
     const itemoptionsPrj = ref([stringOptionsPrj]);
     // const itemoptionsLIB = ref([stringOptionsLIB]);
 
+    // 
+
     const filterFnUACS = (val, update) => {
       if (val === "") {
           update(() => {
@@ -620,6 +647,8 @@
           );
       });
   };
+
+// 
 
   const filterFnPrj = (val, update) => {
       if (val === "") {
@@ -863,13 +892,13 @@ watch(mfopapSelect, (newValue) => {
         margin: auto;
     }
     .print-btn {
-        width: 250px;
+        width: 180px;
         margin: 5px;
         border-radius: 10px;
     }
     @media (max-width: 1200px) {
         .print-btn {
-            width: 150px;
+            width: 100px;
             padding: 8px;
         }
     }

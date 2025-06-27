@@ -143,284 +143,318 @@
             </q-card-section>
         </q-card>
     </div>
+    <!--  -->
     <div class="q-pa-md" v-if="!showTable" id="orsForm">
-        <q-card class="my-card" flat style="border-radius: 20px">
-            <q-card-section horizontal>
-                <q-card-section class="col" style="padding: 45px">
-                    <q-card
-                        flat
-                        bordered
-                        style="border-color: #e5e5e5; padding: 15px"
-                    >
-                        <q-card flat>
-                            <div class="row items-center justify-between">
-                                <span style="font-size: 20px">Add ORS</span>
-                                <q-btn
-                                    @click="toggleORSTable"
-                                    :color="$q.dark.isActive ? 'pink-7' : 'red'"
-                                    >Cancel</q-btn
-                                >
-                            </div>
-                            <!--  -->
-                            <form id="orsdetails" @submit.prevent="addnewORS">
-                                <div class="q-pa-x-md row">
-                                    <div class="q-pa-sm col-6">
-                                        <q-select
-                                            autofocus
-                                            use-input
-                                            fill-input
-                                            hide-selected
-                                            input-debounce="0"
-                                            @filter="filterFnPayee"
-                                            v-model="selectedPayee"
-                                            :options="itemoptionsPayee"
-                                            label="Payee Name "
-                                            map-options
-                                            add
-                                            required
-                                        >
-                                            <template v-slot:label>
-                                                Payee Name
-                                                <span style="font-size: 12px"
-                                                    >(*)</span
-                                                >
-                                            </template>
-                                            <template v-slot:no-option>
-                                                <q-item>
-                                                    <q-item-section
-                                                        class="text-grey"
-                                                    >
-                                                        No results
-                                                    </q-item-section>
-                                                </q-item>
-                                            </template>
-                                        </q-select>
-                                    </div>
-
-                                    <div class="q-pa-sm col-6">
-                                        <q-input
-                                            label="Account Number"
-                                            v-model:model-value="
-                                                selectedPayee.payeeacctnum
-                                            "
-                                            required
-                                            readonly
-                                            disabled
-                                        >
-                                        </q-input>
-                                    </div>
-                                </div>
-                                <div class="q-pa-x-md row">
-                                    <div class="q-pa-sm col-6">
-                                        <q-input
-                                            label="Bank Branch"
-                                            required
-                                            v-model:model-value="
-                                                selectedPayee.payeeaddr
-                                            "
-                                            readonly
-                                            disabled
-                                        >
-                                        </q-input>
-                                    </div>
-                                    <div class="q-pa-sm col-6">
-                                        <q-input
-                                            label="TIN"
-                                            v-model="state.orstin"
-                                        >
-                                        </q-input>
-                                    </div>
-                                </div>
-
-                                <div class="q-pa-x-md row">
-                                    <div class="q-pa-sm col-12">
-                                        <q-input
-                                            label="Address"
-                                            v-model="state.address"
-                                        >
-                                        </q-input>
-                                    </div>
-                                </div>
-                                <!-- Hidden input -->
-                                <input
-                                    type="text"
-                                    v-model="selectedPayee.value"
-                                    id="selpayee"
-                                    hidden
-                                />
-
-                                <br /><br />
-                                <div
-                                    class="row"
-                                    style="
-                                        border: 1px solid #8ec8ed;
-                                        border-radius: 10px;
-                                        padding: 15px;
-                                        margin-bottom: 10px;
-                                    "
-                                    v-for="(row, index) in appendRow"
-                                    :key="index"
-                                >
-                                    <!-- Column Group -->
-                                    <div class="q-pa-sm col-1">
-                                        <q-input
-                                            :name="`data[${index}]respcen`"
-                                            id="respctxt"
-                                            label="Division"
-                                            v-model="row.respcentxt"
-                                        ></q-input>
-                                    </div>
-
-                                    <div class="q-pa-sm col-4">
-                                        <q-input
-                                            v-model="row.particstxt"
-                                            :name="`data[${index}]prj`"
-                                            label="Particulars"
-                                        ></q-input>
-                                    </div>
-                                    <div class="q-pa-sm col-2">
-                                        <q-select
-                                            use-input
-                                            fill-input
-                                            hide-selected
-                                            input-debounce="0"
-                                            @filter="filterFnUACS"
-                                            v-model="row.uacsselect"
-                                            :options="itemoptionsUACS"
-                                            :name="`data[${index}]uacsselect`"
-                                            label="UACS"
-                                            map-options
-                                            required
-                                            hide-dropown-icon="true"
-                                            behavior="menu"
-                                            menu-anchor="bottom start"
-                                            menu-self="top start"
-                                        >
-                                            <template v-slot:label>
-                                                UACS
-                                                <span style="font-size: 12px"
-                                                    >(*)</span
-                                                >
-                                            </template>
-                                            <template v-slot:no-option>
-                                                <q-item>
-                                                    <q-item-section
-                                                        class="text-grey"
-                                                    >
-                                                        No results
-                                                    </q-item-section>
-                                                </q-item>
-                                            </template>
-                                        </q-select>
-                                    </div>
-                                    <div class="q-pa-sm col-2">
-                                        <q-select
-                                            use-input
-                                            fill-input
-                                            hide-selected
-                                            input-debounce="0"
-                                            @filter="filterFnPrj"
-                                            v-model="row.prjselect"
-                                            :options="itemoptionsMFOPAP"
-                                            :name="`data[${index}]prjselect`"
-                                            label="MFO/PAP"
-                                            map-options
-                                            required
-                                        >
-                                            <template v-slot:label>
-                                                MFO/PAP
-                                                <span style="font-size: 12px"
-                                                    >(*)</span
-                                                >
-                                            </template>
-                                            <template v-slot:no-option>
-                                                <q-item>
-                                                    <q-item-section
-                                                        class="text-grey"
-                                                    >
-                                                        No results
-                                                    </q-item-section>
-                                                </q-item>
-                                            </template>
-                                        </q-select>
-                                    </div>
-
-                                    <div class="q-pa-sm col-2">
-                                        <q-input
-                                            :name="`data[${index}]amount`"
-                                            label="Amount"
-                                            required
-                                            v-model="row.amounttxt"
-                                            type="number"
-                                            step="0.01"
-                                        >
-                                            <template v-slot:label>
-                                                Amount
-                                                <span style="font-size: 12px"
-                                                    >(*)</span
-                                                >
-                                            </template>
-                                        </q-input>
-                                    </div>
-                                    <div class="q-pa-sm col-1">
+        <div class="row">
+            <div class="col-7">        
+                <q-card class="my-card" flat style="border-radius: 20px; width: 99%;">
+                    <q-card-section horizontal>
+                        <q-card-section class="col" style="padding: 45px">
+                            <q-card
+                                flat
+                                bordered
+                                style="border-color: #e5e5e5; padding: 15px"
+                            >
+                                <q-card flat>
+                                    <div class="row items-center justify-between">
+                                        <span style="font-size: 20px">Add ORS</span>
                                         <q-btn
-                                            v-if="index === 0"
-                                            @click="addNewItem()"
-                                            padding="5px 5px"
-                                            :color="
-                                                $q.dark.isActive
-                                                    ? 'blue-4'
-                                                    : 'primary'
-                                            "
-                                            icon="add"
-                                            style="float: right"
+                                            @click="toggleORSTable"
+                                            :color="$q.dark.isActive ? 'pink-7' : 'red'"
+                                            >Cancel</q-btn
                                         >
-                                            <q-tooltip> Add row </q-tooltip>
-                                        </q-btn>
-                                        <q-btn
-                                            v-if="canDelete(index)"
-                                            @click="deleteItem(index)"
-                                            padding="5px 5px"
-                                            :color="
-                                                $q.dark.isActive
-                                                    ? 'pink-7'
-                                                    : 'negative'
-                                            "
-                                            icon="delete"
-                                            style="float: right"
-                                        >
-                                            <q-tooltip> Delete Row </q-tooltip>
-                                        </q-btn>
                                     </div>
-                                </div>
-                                <div class="btn-container">
-                                    <q-btn
-                                        label="Save ORS"
-                                        padding="12px"
-                                        name="addnewORS"
-                                        type="submit"
-                                        style="width: 40%; border-radius: 15px"
-                                        :color="
-                                            $q.dark.isActive
-                                                ? 'blue-4'
-                                                : 'primary'
-                                        "
-                                        icon="save"
-                                    />
-                                </div>
-                            </form>
-                        </q-card>
-                    </q-card>
-                </q-card-section>
-            </q-card-section>
+                                    <!--  -->
+                                    <form id="orsdetails" @submit.prevent="addnewORS">
+                                        <div class="q-pa-x-md row">
+                                            <div class="q-pa-sm col-6">
+                                                <q-select
+                                                    autofocus
+                                                    use-input
+                                                    fill-input
+                                                    hide-selected
+                                                    input-debounce="0"
+                                                    @filter="filterFnPayee"
+                                                    v-model="selectedPayee"
+                                                    :options="itemoptionsPayee"
+                                                    label="Payee Name "
+                                                    map-options
+                                                    add
+                                                    required
+                                                >
+                                                    <template v-slot:label>
+                                                        Payee Name
+                                                        <span style="font-size: 12px"
+                                                            >(*)</span
+                                                        >
+                                                    </template>
+                                                    <template v-slot:no-option>
+                                                        <q-item>
+                                                            <q-item-section
+                                                                class="text-grey"
+                                                            >
+                                                                No results
+                                                            </q-item-section>
+                                                        </q-item>
+                                                    </template>
+                                                </q-select>
+                                            </div>
 
-            <!-- <p>
-                Dark mode:
-                {{ darkMode ? "Enabled" : "Disabled" }}
-            </p> -->
-        </q-card>
+                                            <div class="q-pa-sm col-6">
+                                                <q-input
+                                                    label="Account Number"
+                                                    v-model:model-value="
+                                                        selectedPayee.payeeacctnum
+                                                    "
+                                                    required
+                                                    readonly
+                                                    disabled
+                                                >
+                                                </q-input>
+                                            </div>
+                                        </div>
+                                        <div class="q-pa-x-md row">
+                                            <div class="q-pa-sm col-6">
+                                                <q-input
+                                                    label="Bank Branch"
+                                                    required
+                                                    v-model:model-value="
+                                                        selectedPayee.payeeaddr
+                                                    "
+                                                    readonly
+                                                    disabled
+                                                >
+                                                </q-input>
+                                            </div>
+                                            <div class="q-pa-sm col-6">
+                                                <q-input
+                                                    label="TIN"
+                                                    v-model="state.orstin"
+                                                >
+                                                </q-input>
+                                            </div>
+                                        </div>
+
+                                        <div class="q-pa-x-md row">
+                                            <div class="q-pa-sm col-12">
+                                                <q-input
+                                                    label="Address"
+                                                    v-model="state.address"
+                                                >
+                                                </q-input>
+                                            </div>
+                                        </div>
+                                        <!-- Hidden input -->
+                                        <input
+                                            type="text"
+                                            v-model="selectedPayee.value"
+                                            id="selpayee"
+                                            hidden
+                                        />
+<!-- lkou98uj9 -->
+                                        <br /><br />
+                                        <div
+                                            class="row"
+                                            style="
+                                                border: 1px solid #8ec8ed;
+                                                border-radius: 10px;
+                                                padding: 15px;
+                                                margin-bottom: 10px;
+                                            "
+                                            v-for="(row, index) in appendRow"
+                                            :key="index"
+                                        >
+                                            <!-- Column Group -->
+                                            <div class="q-pa-sm col-1">
+                                                <q-input
+                                                    :name="`data[${index}]respcen`"
+                                                    id="respctxt"
+                                                    label="Division"
+                                                    v-model="row.respcentxt"
+                                                ></q-input>
+                                            </div>
+
+                                            <div class="q-pa-sm col-4">
+                                                <q-input
+                                                    v-model="row.particstxt"
+                                                    :name="`data[${index}]prj`"
+                                                    label="Particulars"
+                                                ></q-input>
+                                            </div>
+                                            <div class="q-pa-sm col-2">
+                                                <q-select
+                                                    use-input
+                                                    fill-input
+                                                    hide-selected
+                                                    input-debounce="0"
+                                                    @filter="filterFnUACS"
+                                                    v-model="row.uacsselect"
+                                                    :options="itemoptionsUACS"
+                                                    :name="`data[${index}]uacsselect`"
+                                                    label="UACS"
+                                                    map-options
+                                                    required
+                                                    hide-dropown-icon="true"
+                                                    behavior="menu"
+                                                    menu-anchor="bottom start"
+                                                    menu-self="top start"
+                                                >
+                                                    <template v-slot:label>
+                                                        UACS
+                                                        <span style="font-size: 12px"
+                                                            >(*)</span
+                                                        >
+                                                    </template>
+                                                    <template v-slot:no-option>
+                                                        <q-item>
+                                                            <q-item-section
+                                                                class="text-grey"
+                                                            >
+                                                                No results
+                                                            </q-item-section>
+                                                        </q-item>
+                                                    </template>
+                                                </q-select>
+                                            </div>
+                                            <!--  -->
+                                            <div class="q-pa-sm col-2">
+                                                <q-select
+                                                    use-input
+                                                    fill-input
+                                                    hide-selected
+                                                    input-debounce="0"
+                                                    @filter="filterFnPrj"
+                                                    v-model="row.prjselect"
+                                                    :options="itemoptionsMFOPAP"
+                                                    :name="`data[${index}]prjselect`"
+                                                    label="MFO/PAP"
+                                                    map-options
+                                                    required
+                                                    @update:model-value="val => console.log('Selected value:', val.value)"
+                                                >
+                                                    <template v-slot:label>
+                                                        MFO/PAP
+                                                        <span style="font-size: 12px"
+                                                            >(*)</span
+                                                        >
+                                                    </template>
+                                                    <template v-slot:no-option>
+                                                        <q-item>
+                                                            <q-item-section
+                                                                class="text-grey"
+                                                            >
+                                                                No results
+                                                            </q-item-section>
+                                                        </q-item>
+                                                    </template>
+                                                </q-select>
+                                            </div>
+
+                                            <div class="q-pa-sm col-2">
+                                                <q-input
+                                                    :name="`data[${index}]amount`"
+                                                    label="Amount"
+                                                    required
+                                                    v-model="row.amounttxt"
+                                                    type="number"
+                                                    step="0.01"
+                                                >
+                                                    <template v-slot:label>
+                                                        Amount
+                                                        <span style="font-size: 12px"
+                                                            >(*)</span
+                                                        >
+                                                    </template>
+                                                </q-input>
+                                            </div>
+                                            <div class="q-pa-sm col-1">
+                                                <q-btn
+                                                    v-if="index === 0"
+                                                    @click="addNewItem()"
+                                                    padding="5px 5px"
+                                                    :color="
+                                                        $q.dark.isActive
+                                                            ? 'blue-4'
+                                                            : 'primary'
+                                                    "
+                                                    icon="add"
+                                                    style="float: right"
+                                                >
+                                                    <q-tooltip> Add row </q-tooltip>
+                                                </q-btn>
+                                                <q-btn
+                                                    v-if="canDelete(index)"
+                                                    @click="deleteItem(index)"
+                                                    padding="5px 5px"
+                                                    :color="
+                                                        $q.dark.isActive
+                                                            ? 'pink-7'
+                                                            : 'negative'
+                                                    "
+                                                    icon="delete"
+                                                    style="float: right"
+                                                >
+                                                    <q-tooltip> Delete Row </q-tooltip>
+                                                </q-btn>
+                                            </div>
+                                        </div>
+                                        <div class="btn-container">
+                                            <q-btn
+                                                label="Save ORS"
+                                                padding="12px"
+                                                name="addnewORS"
+                                                type="submit"
+                                                style="width: 40%; border-radius: 15px"
+                                                :color="
+                                                    $q.dark.isActive
+                                                        ? 'blue-4'
+                                                        : 'primary'
+                                                "
+                                                icon="save"
+                                            />
+                                        </div>
+                                    </form>
+                                </q-card>
+                            </q-card>
+                        </q-card-section>
+                    </q-card-section>
+
+                    <!-- <p>
+                        Dark mode:
+                        {{ darkMode ? "Enabled" : "Disabled" }}
+                    </p> -->
+                </q-card>
+            </div>
+
+            <div class="col-5">
+                <q-card class="my-card" flat style="border-radius: 20px;">
+                    <q-card-section horizontal>
+                        <q-card-section class="col" style="padding: 45px">
+                            <q-card
+                                flat
+                                bordered
+                                style="border-color: #e5e5e5; padding: 15px"
+                            >
+                                <q-card flat>
+                                    <div class="row items-center justify-between">
+                                        <span style="font-size: 20px">LIB Items</span>
+                                    </div>
+                                </q-card>
+                            </q-card>
+                        </q-card-section>
+                    </q-card-section>
+                    <!--  -->
+                    <!-- <p>
+                        Dark mode:
+                        {{ darkMode ? "Enabled" : "Disabled" }}
+                    </p> -->
+                </q-card>
+            </div>
+        </div>
     </div>
 </template>
+
+<!--  -->
 
 <script setup>
     import { ref, onMounted, reactive, inject } from "vue";
@@ -692,7 +726,10 @@
                 (v) => v.label.toLowerCase().indexOf(needle) > -1
             );
         });
+
     };
+
+    // 
 
     const clearText = () => {
         selectedPayee.value = "";
@@ -710,7 +747,9 @@
             row.respcentxt = userdiv;
         });
         resetItem();
-    };
+    }; 
+
+// 
 
     // Append row scripts
     const canDelete = (index) => index > 0;
@@ -730,7 +769,7 @@
         if (appendRow.value.length < 20) {
             appendRow.value.push({
                 particstxt: "",
-                uacstxt: "",
+                uacstxt: "", 
                 uacsselect: "",
                 prjselect: "",
                 mfotxt: "",
@@ -739,6 +778,8 @@
             });
         }
     };
+
+// 
 
     const deleteItem = (index) => {
         if (index !== 0) {
@@ -806,7 +847,6 @@
         });
     };
     // =============== SweetAlert =============== //
-
     
     const currentprops = ref();
 
@@ -873,6 +913,8 @@
 
 </script>
 
+<!--  -->
+
 <style>
     * {
         font-family: "Poppins", sans-serif;
@@ -927,3 +969,6 @@
         padding-bottom: 10px;
     }
 </style>
+
+
+<!--  -->

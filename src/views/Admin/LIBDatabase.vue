@@ -273,8 +273,8 @@
             field: "balance_percentage",
             align: "right",
             format: val => Intl.NumberFormat("en-US", {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
             }).format(val) + "%",
             style: (row) => row.balance_percentage > 90 ? "color: red;" : ""
         },

@@ -1,5 +1,6 @@
 <template>
     <div class="q-pa-md">
+        <!--  -->
         <q-card class="card-container" flat>
             <q-card-section class="col orsdetails-card">
                 <q-card class="ors-card" flat bordered>
@@ -127,7 +128,7 @@
                                             class="q-mt-md"
                                         />
                                         <div v-else>
-                                            <q-markup-table flat bordered>
+                                            <q-markup-table flat bordered dense>
                                                 <thead>
                                                     <tr separator="cell">
                                                         <th
@@ -783,7 +784,7 @@
                                             class="q-mt-md"
                                         />
                                         <div v-else>
-                                            <q-markup-table flat bordered>         
+                                            <q-markup-table flat bordered dense>         
                                                 <!-- prettier-ignore -->
                                                 <thead>
                                                     <tr separator="cell">

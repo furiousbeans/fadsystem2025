@@ -341,7 +341,7 @@
     const $q = useQuasar();
     const drawer = ref(false);
     const miniState = ref(true);
-    const darkMode = ref(localStorage.getItem("darkMode") === "true");
+    const darkMode = ref(localStorage.getItem("darkMode") === "false");
 
     const drawerClick = (e) => {
         if (miniState.value) {
